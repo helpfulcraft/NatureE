@@ -1,0 +1,71 @@
+<view
+  id="{{independentID}}"
+  class="goods-card"
+  bind:tap="onClick"
+  data-goods="{{ goods }}"
+>
+	<view class="goods-card__main">
+		<view class="goods-card__thumb" bind:tap="clickThumbHandle">
+			<t-image
+			  wx:if="{{goodsInfo.thumb}}"
+			  t-class="goods-card__img"
+			  src="{{goodsInfo.thumb}}"
+			  mode="aspectFill"
+			  lazy-load
+			  bind:load="onImageLoad"
+			  bind:error="onImageError"
+			/>
+			<view wx:if="{{imageLoading}}" class="goods-card__loading">
+				<t-loading theme="circular" size="40rpx" />
+			</view>
+			<view wx:elif="{{imageLoadError || !goodsInfo.thumb}}" class="goods-card__thumb--empty">
+				<t-icon name="image" size="60rpx" color="#ccc" />
+			</view>
+		</view>
+		<view class="goods-card__body">
+			<view class="goods-card__upper">
+				<view wx:if="{{ goods.title }}" class="goods-card__title">
+					{{ goods.title }}
+				</view>
+				<view wx:if="{{ goods.tags && !!goods.tags.length }}" class="goods-card__tags">
+					<view
+					  wx:for="{{ goods.tags }}"
+					  wx:key="index"
+					  wx:for-item="tag"
+					  class="goods-card__tag"
+					>
+						{{tag}}
+					</view>
+				</view>
+			</view>
+			<view class="goods-card__down">
+				<price
+				  wx:if="{{ goodsInfo.hasPrice }}"
+				  wr-class="spec-for-price"
+				  symbol-class="spec-for-symbol"
+				  symbol="{{pricePrefix}}"
+				  price="{{goodsInfo.price}}"
+				/>
+				<text wx:if="{{goodsInfo.hasPrice}}" class="goods-card__unit">{{priceUnit}}</text>
+				<price
+				  wx:if="{{ goodsInfo.originPrice && goodsInfo.isValidityLinePrice }}"
+				  wr-class="goods-card__origin-price"
+				  symbol="{{pricePrefix}}"
+				  price="{{goodsInfo.originPrice}}"
+				  type="delthrough"
+				/>
+				<t-icon
+				  class="goods-card__add-cart"
+				  prefix="wr"
+				  name="cartAdd"
+				  id="{{independentID}}-cart"
+				  data-goods="{{goods}}"
+				  catchtap="onAddCart"
+				  size="48rpx"
+				  color="#FA550F"
+				/>
+			</view>
+		</view>
+	</view>
+</view>
+

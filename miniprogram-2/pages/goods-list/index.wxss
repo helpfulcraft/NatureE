@@ -1,0 +1,253 @@
+page {
+  background-color: #f5f5f5;
+}
+
+.goods-list-container {
+  min-height: 100vh;
+}
+
+.search-wrap {
+  margin-bottom: 24rpx;
+  padding: 16rpx !important;
+}
+
+.filter-tabs {
+  margin-bottom: 24rpx;
+  padding: 0 !important;
+}
+
+.custom-tabs {
+  --td-tab-nav-bg-color: transparent;
+  --td-tab-border-color: transparent;
+  --td-tab-item-color: #666;
+  --td-tab-track-color: #FF5F15;
+}
+
+.custom-tabs-active {
+  color: #FF5F15 !important;
+  font-weight: bold;
+}
+
+.goods-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24rpx;
+}
+
+.goods-item {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.goods-image {
+  width: 100%;
+  height: 320rpx;
+  background: #f7f7f7;
+}
+
+.goods-info {
+  padding: 16rpx;
+}
+
+.goods-name {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 12rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.goods-price {
+  font-size: 32rpx;
+  color: #FF5F15;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.goods-sales {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 0;
+}
+
+.empty-image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 24rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.loading-state {
+  display: flex;
+  justify-content: center;
+  padding: 40rpx 0;
+}
+
+.load-more {
+  text-align: center;
+  padding: 32rpx 0;
+}
+
+.load-more-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.goods-list-container .t-search {
+  padding: 0 30rpx;
+  background-color: #fff;
+}
+
+.goods-list-container .t-class__input-container {
+  height: 64rpx !important;
+  border-radius: 32rpx !important;
+}
+
+.goods-list-container .t-search__left-icon {
+  display: flex;
+  align-items: center;
+}
+
+.goods-list-container .t-search__input {
+  font-size: 28rpx !important;
+  color: rgb(116, 116, 116) !important;
+}
+
+.goods-list-container .category-goods-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 16rpx 0;
+}
+
+.goods-list-container .wr-goods-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.goods-list-container .t-image__mask {
+  display: flex !important;
+}
+
+.goods-list-container .empty-wrap {
+  margin-top: 184rpx;
+  margin-bottom: 120rpx;
+  height: 300rpx;
+}
+
+.goods-list-container .empty-wrap .empty-tips .empty-content .content-text {
+  margin-top: 40rpx;
+}
+
+.goods-list-container .price-container {
+  padding: 32rpx;
+  height: 100vh;
+  max-width: 632rpx;
+  background-color: #fff;
+  border-radius: 30rpx 0 0 30rpx;
+  box-sizing: border-box;
+}
+
+.goods-list-container .price-between {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+}
+
+.goods-list-container .price-ipts-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 24rpx;
+
+  --td-input-bg-color: rgba(245, 245, 245, 1);
+  --td-input-vertical-padding: 4rpx;
+  --td-input-border-color: transparent;
+}
+
+.goods-list-container .price-ipts-wrap .price-divided {
+  width: 16rpx;
+  margin: 0 24rpx;
+  color: #333333;
+}
+
+.goods-list-container .price-ipts-wrap .t-input__wrapper {
+  margin: 0 !important;
+}
+
+.goods-list-container .price-ipts-wrap .t-input__content,
+.goods-list-container .price-ipts-wrap .t-input__placeholder {
+  font-size: 24rpx !important;
+}
+
+.goods-list-container .price-ipts-wrap .price-ipt {
+  border-radius: 8rpx;
+}
+
+.goods-scroll {
+  flex: 1;
+  overflow: hidden;
+}
+
+.filter-popup {
+  width: 600rpx;
+  padding: 30rpx;
+  background: #fff;
+  border-radius: 16rpx;
+}
+
+.filter-popup__title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 24rpx;
+}
+
+.filter-popup__price {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.filter-popup__price t-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.price-separator {
+  margin: 0 20rpx;
+  color: #999;
+}
+
+.filter-popup__buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 24rpx;
+}
+
+.filter-popup__buttons t-button {
+  flex: 1;
+}
+
+.t-input {
+  background: #f5f5f5;
+  border-radius: 8rpx;
+  padding: 12rpx 24rpx;
+}

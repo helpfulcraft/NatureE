@@ -1,0 +1,100 @@
+/* pages/usercenter/index/index.wxss */
+.user-center {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 40rpx 32rpx;
+  background: #fff;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  margin-right: 24rpx;
+}
+
+.info {
+  flex: 1;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.phone {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.order-section,
+.menu-section {
+  margin-top: 24rpx;
+  background: #fff;
+  padding: 0 32rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 108rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.more {
+  display: flex;
+  align-items: center;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.order-types {
+  display: flex;
+  padding: 32rpx 0;
+}
+
+.type-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.type-item text {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 16rpx;
+}
+
+.menu-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 32rpx 0;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-item text {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 16rpx;
+}

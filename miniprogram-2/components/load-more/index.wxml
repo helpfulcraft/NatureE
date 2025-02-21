@@ -1,0 +1,30 @@
+<view class="load-more">
+  <block wx:if="{{listIsEmpty}}">
+    <t-empty
+      icon="info-circle-filled"
+      description="{{emptyText}}"
+    />
+  </block>
+  <block wx:else>
+    <view class="load-more__inner" bindtap="onRetry">
+      <block wx:if="{{status === 0}}">
+        <t-loading
+          theme="circular"
+          size="40rpx"
+          class="load-more__loading"
+          loading
+        />
+        <text class="load-more__text">{{loadingText}}</text>
+      </block>
+      <block wx:if="{{status === 1}}">
+        <text class="load-more__text" bindtap="onLoadMore">上拉加载更多</text>
+      </block>
+      <block wx:if="{{status === 2}}">
+        <text class="load-more__text">{{finishText}}</text>
+      </block>
+      <block wx:if="{{status === 3}}">
+        <text class="load-more__text load-more__text--error">{{failedText}}</text>
+      </block>
+    </view>
+  </block>
+</view> 

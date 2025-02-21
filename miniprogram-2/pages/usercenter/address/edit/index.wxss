@@ -1,0 +1,84 @@
+/* pages/usercenter/address/edit/index.wxss */
+.address-edit {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 120rpx;
+}
+
+.form {
+  background: #fff;
+  padding: 0 30rpx;
+  margin-top: 20rpx;
+}
+
+.form-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.label {
+  width: 160rpx;
+  font-size: 28rpx;
+  color: #333;
+  padding-top: 4rpx;
+}
+
+.input {
+  flex: 1;
+  height: 44rpx;
+  min-height: 44rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.textarea {
+  flex: 1;
+  height: 160rpx;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.4;
+}
+
+.picker {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.picker.placeholder {
+  color: #999;
+}
+
+.switch-item {
+  align-items: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 30rpx;
+  background: #fff;
+  box-shadow: 0 -2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.save-btn {
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #ff4444;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 44rpx;
+}
+
+.save-btn.disabled {
+  opacity: 0.6;
+}

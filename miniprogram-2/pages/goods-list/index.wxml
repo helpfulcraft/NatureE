@@ -1,0 +1,57 @@
+<view style="text-align: center; color: #b9b9b9" wx:if="{{pageLoading}}">
+  <t-loading theme="circular" size="40rpx" text="加载中..." inherit-color />
+</view>
+
+<view class="goods-list-container page-padding">
+  <!-- 搜索栏 -->
+  <view class="card search-wrap">
+    <t-search
+      value="{{searchValue}}"
+      placeholder="搜索商品"
+      bind:change="onSearchChange"
+      bind:submit="onSearch"
+    />
+  </view>
+
+  <!-- 筛选标签 -->
+  <view class="card filter-tabs">
+    <t-tabs
+      defaultValue="{{0}}"
+      bind:change="onTabChange"
+      t-class="custom-tabs"
+      t-class-active="custom-tabs-active"
+    >
+      <t-tab-panel label="综合" value="0" />
+      <t-tab-panel label="销量" value="1" />
+      <t-tab-panel label="价格" value="2" />
+    </t-tabs>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="goods-list">
+    <view class="card goods-item" wx:for="{{goodsList}}" wx:key="id">
+      <image class="goods-image" src="{{item.image}}" mode="aspectFill" />
+      <view class="goods-info">
+        <view class="goods-name">{{item.name}}</view>
+        <view class="goods-price">¥{{item.price}}</view>
+        <view class="goods-sales">已售{{item.sales}}件</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!goodsList.length && !loading}}">
+    <image class="empty-image" src="/assets/empty.png" />
+    <text class="empty-text">暂无相关商品</text>
+  </view>
+
+  <!-- 加载状态 -->
+  <t-loading theme="circular" size="40rpx" loading="{{loading}}" />
+
+  <!-- 加载更多 -->
+  <view class="load-more" wx:if="{{hasMore && !loading}}">
+    <text class="load-more-text">上拉加载更多</text>
+  </view>
+</view>
+
+<t-toast id="t-toast" />

@@ -1,0 +1,74 @@
+<!--pages/usercenter/address/edit/index.wxml-->
+<view class="address-edit">
+  <view class="form">
+    <!-- 联系人 -->
+    <view class="form-item">
+      <text class="label">联系人</text>
+      <input
+        class="input"
+        placeholder="请输入姓名"
+        value="{{name}}"
+        data-field="name"
+        bindinput="onInput"
+      />
+    </view>
+
+    <!-- 手机号 -->
+    <view class="form-item">
+      <text class="label">手机号</text>
+      <input
+        class="input"
+        type="number"
+        maxlength="11"
+        placeholder="请输入手机号"
+        value="{{phone}}"
+        data-field="phone"
+        bindinput="onInput"
+      />
+    </view>
+
+    <!-- 所在地区 -->
+    <view class="form-item">
+      <text class="label">所在地区</text>
+      <picker
+        mode="region"
+        value="{{region}}"
+        custom-item="{{customItem}}"
+        bindchange="onRegionChange"
+      >
+        <view class="picker {{!province ? 'placeholder' : ''}}">
+          {{province ? region[0] + ' ' + region[1] + ' ' + region[2] : '请选择省市区'}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- 详细地址 -->
+    <view class="form-item">
+      <text class="label">详细地址</text>
+      <textarea
+        class="textarea"
+        placeholder="请输入详细地址"
+        value="{{detail}}"
+        data-field="detail"
+        bindinput="onInput"
+      />
+    </view>
+
+    <!-- 设为默认 -->
+    <view class="form-item switch-item">
+      <text class="label">设为默认地址</text>
+      <switch checked="{{isDefault}}" bindchange="onSwitchChange" color="#ff4444" />
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="footer">
+    <button 
+      class="save-btn {{loading ? 'disabled' : ''}}" 
+      disabled="{{loading}}"
+      bindtap="onSave"
+    >
+      保存
+    </button>
+  </view>
+</view>

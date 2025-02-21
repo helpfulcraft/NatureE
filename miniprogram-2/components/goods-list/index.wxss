@@ -1,0 +1,77 @@
+.goods-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24rpx;
+  padding: 24rpx;
+  margin: 0 24rpx;
+  background: linear-gradient(135deg, rgba(255, 95, 21, 0.15), rgba(29, 149, 63, 0.1));
+  border-radius: 16rpx;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 95, 21, 0.1);
+}
+
+.goods-item {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  transform: translateY(0);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.goods-item:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.goods-image {
+  width: 100%;
+  height: 330rpx;
+  position: relative;
+}
+
+.goods-image::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60rpx;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05));
+  pointer-events: none;
+}
+
+.goods-info {
+  padding: 20rpx;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
+}
+
+.goods-name {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 40rpx;
+  margin-bottom: 12rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-weight: 500;
+}
+
+.goods-price {
+  font-size: 32rpx;
+  color: #FF5F15;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.goods-price::before {
+  content: '¥';
+  font-size: 24rpx;
+  margin-right: 4rpx;
+} 

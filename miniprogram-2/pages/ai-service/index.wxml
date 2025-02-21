@@ -1,0 +1,89 @@
+<view class="ai-service">
+  <!-- 聊天内容区域 -->
+  <scroll-view 
+    class="chat-container"
+    scroll-y
+    scroll-into-view="{{scrollToMessage}}"
+    enhanced
+    show-scrollbar="{{false}}"
+    bindscrolltoupper="onScrollToUpper"
+  >
+    <view class="chat-list" id="chat-list">
+      <!-- 欢迎消息 -->
+      <view class="message system">
+        <text>欢迎使用AI客服，我是您的智能助手，请问有什么可以帮您？</text>
+      </view>
+
+      <!-- 预制问题选项 -->
+      <view class="quick-questions" wx:if="{{messages.length === 0}}">
+        <view 
+          class="question-item"
+          wx:for="{{quickQuestions}}"
+          wx:key="index"
+          bindtap="onQuickQuestionTap"
+          data-question="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+
+      <!-- 消息列表 -->
+      <view 
+        wx:for="{{messages}}" 
+        wx:key="id"
+        class="message {{item.type}}"
+        id="msg-{{item.id}}"
+      >
+        <block wx:if="{{item.type === 'ai'}}">
+          <view class="avatar">AI</view>
+          <view class="content">
+            <text user-select>{{item.content}}</text>
+            <view class="time">{{item.time}}</view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="content">
+            <text user-select>{{item.content}}</text>
+            <view class="time">{{item.time}}</view>
+          </view>
+          <view class="avatar">
+            <image src="{{userInfo.avatarUrl || '/assets/icons/user.png'}}" mode="aspectFill"/>
+          </view>
+        </block>
+      </view>
+
+      <!-- 加载中状态 -->
+      <view class="message ai" wx:if="{{loading}}">
+        <view class="avatar">AI</view>
+        <view class="content">
+          <view class="loading-dots">
+            <view class="dot"></view>
+            <view class="dot"></view>
+            <view class="dot"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="input-area">
+    <view class="input-box">
+      <input
+        class="input"
+        value="{{inputValue}}"
+        placeholder="请输入您的问题"
+        bindinput="onInputChange"
+        bindconfirm="onSend"
+        confirm-type="send"
+      />
+      <button 
+        class="send-btn {{loading ? 'loading' : ''}}"
+        bindtap="onSend"
+        disabled="{{loading}}"
+      >发送</button>
+    </view>
+  </view>
+</view>
+
+<t-toast id="t-toast" /> 

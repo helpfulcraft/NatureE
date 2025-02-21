@@ -1,0 +1,133 @@
+<view class="goods-detail-page">
+  <!-- 商品图片轮播 -->
+  <swiper 
+    class="goods-swiper"
+    indicator-dots="{{true}}"
+    autoplay="{{true}}"
+    interval="{{3000}}"
+    duration="{{500}}"
+    circular="{{true}}"
+  >
+    <block wx:for="{{imgSrcs}}" wx:key="index">
+      <swiper-item>
+        <image 
+          src="{{item}}" 
+          mode="aspectFill" 
+          class="swiper-image"
+          bind:tap="previewImage"
+          data-index="{{index}}"
+        />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- 商品基本信息 -->
+  <view class="goods-info">
+    <view class="goods-price">
+      <text class="price-symbol">¥</text>
+      <text class="price-integer">{{minSalePrice}}</text>
+      <block wx:if="{{maxSalePrice > minSalePrice}}">
+        <text class="price-range">-</text>
+        <text class="price-integer">{{maxSalePrice}}</text>
+      </block>
+    </view>
+    <view class="goods-title">{{details.title}}</view>
+    <view class="goods-desc">{{details.description}}</view>
+  </view>
+
+  <!-- 商品详情 -->
+  <view class="goods-detail">
+    <view class="section-title">商品详情</view>
+    <view class="detail-content">
+      <text>{{details.desc}}</text>
+      <block wx:for="{{details.images}}" wx:key="index">
+        <image 
+          src="{{item}}" 
+          mode="widthFix" 
+          class="detail-image"
+          bind:tap="previewImage"
+          data-index="{{index}}"
+        />
+      </block>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="left-btns">
+      <navigator url="/pages/home/home/index" open-type="switchTab" class="btn-item">
+        <t-icon name="home" size="44rpx" />
+        <text>首页</text>
+      </navigator>
+      <navigator url="/pages/cart/index" open-type="switchTab" class="btn-item">
+        <t-icon name="cart" size="44rpx" />
+        <text>购物车</text>
+      </navigator>
+    </view>
+    <view class="right-btns">
+      <button class="add-cart-btn" bind:tap="onAddToCart">加入购物车</button>
+      <button class="buy-now-btn" bind:tap="onBuyNow">立即购买</button>
+    </view>
+  </view>
+
+  <!-- 规格选择弹窗 -->
+  <view class="specs-popup {{isSpuSelectPopupShow ? 'show' : ''}}" catch:tap="hideSkuSelectPopup">
+    <view class="specs-content" catch:tap="stopPropagation">
+      <view class="popup-header">
+        <image src="{{specImg || primaryImage}}" class="goods-image" />
+        <view class="goods-info">
+          <view class="price">
+            <text class="price-symbol">¥</text>
+            <text class="price-integer">{{selectedSku ? selectedSku.price/100 : minSalePrice}}</text>
+          </view>
+          <view class="selected-specs">
+            {{selectedAttrStr}}
+          </view>
+        </view>
+        <view class="close-btn" bind:tap="hideSkuSelectPopup">
+          <text class="close-icon">×</text>
+        </view>
+      </view>
+
+      <scroll-view scroll-y class="popup-content">
+        <!-- 规格选择区 -->
+        <view class="specs-section">
+          <block wx:for="{{details.specList}}" wx:key="specId">
+            <view class="spec-group">
+              <view class="spec-title">{{item.title}}</view>
+              <view class="spec-values">
+                <view 
+                  wx:for="{{item.specValueList}}" 
+                  wx:key="specValueId" 
+                  wx:for-item="value"
+                  class="spec-value {{value.selected ? 'selected' : ''}} {{value.disabled ? 'disabled' : ''}}"
+                  data-spec-id="{{item.specId}}"
+                  data-value-id="{{value.specValueId}}"
+                  bind:tap="onSpecValueClick"
+                >
+                  {{value.specValue}}
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+
+        <!-- 数量选择区 -->
+        <view class="quantity-selector">
+          <text>购买数量</text>
+          <view class="quantity-control">
+            <view class="minus {{buyNum <= 1 ? 'disabled' : ''}}" bind:tap="onQuantityMinus">-</view>
+            <input type="number" value="{{buyNum}}" disabled class="quantity-input" />
+            <view class="plus {{buyNum >= 999 ? 'disabled' : ''}}" bind:tap="onQuantityPlus">+</view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <view class="popup-footer">
+        <button class="confirm-btn" bind:tap="onConfirmBuy">
+          {{buyType === 'cart' ? '加入购物车' : '立即购买'}}
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

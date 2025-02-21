@@ -1,0 +1,23 @@
+# 微信开发者工具本地配置文件
+project.config.json
+project.private.config.json
+
+# node 依赖
+node_modules/
+
+# 本地文件
+miniprogram_npm/
+.DS_Store
+*.log
+
+# IDE 配置文件
+.idea/
+.vscode/
+
+# 临时文件
+*.swp
+*.swo
+*~
+
+# 编译输出
+dist/ 

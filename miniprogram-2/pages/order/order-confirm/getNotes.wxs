@@ -1,0 +1,121 @@
+var tools = {
+  // 备注字数限制
+  maxLength: 200,
+  
+  // 特殊字符列表
+  specialChars: ['<', '>', '{', '}', '\\', '/', '*'],
+  
+  // 检查是否包含特殊字符
+  hasSpecialChar: function(text) {
+    if (!text) return false;
+    
+    for (var i = 0; i < tools.specialChars.length; i++) {
+      if (text.indexOf(tools.specialChars[i]) !== -1) {
+        return true;
+      }
+    }
+    return false;
+  },
+  
+  // 过滤特殊字符
+  filterSpecialChars: function(text) {
+    if (!text) return '';
+    
+    var result = text;
+    for (var i = 0; i < tools.specialChars.length; i++) {
+      // 使用 split 和 join 替代 replace
+      result = result.split(tools.specialChars[i]).join('');
+    }
+    return result;
+  },
+  
+  // 处理备注文本
+  formatNotes: function(text) {
+    if (!text) return '';
+    
+    // 使用新的过滤方法
+    text = tools.filterSpecialChars(text);
+    
+    // 限制长度
+    if (text.length > tools.maxLength) {
+      text = text.substring(0, tools.maxLength);
+    }
+    
+    return text;
+  },
+  
+  // 获取剩余可输入字数
+  getRemainingCount: function(text) {
+    if (!text) return tools.maxLength;
+    return tools.maxLength - text.length;
+  },
+  
+  // 检查备注是否有效
+  validateNotes: function(text) {
+    if (!text) return true;
+    
+    // 检查长度
+    if (text.length > tools.maxLength) {
+      return false;
+    }
+    
+    // 使用新的特殊字符检查方法
+    if (tools.hasSpecialChar(text)) {
+      return false;
+    }
+    
+    return true;
+  },
+  
+  // 获取备注提示文本
+  getNotesPlaceholder: function(storeInfo) {
+    if (!storeInfo) return '请输入备注信息';
+    return '给商家备注（' + storeInfo.storeName + '）';
+  },
+  
+  // 格式化显示的备注文本
+  getDisplayNotes: function(notes, maxDisplayLength) {
+    if (!notes) return '';
+    maxDisplayLength = maxDisplayLength || 50;
+    
+    if (notes.length <= maxDisplayLength) {
+      return notes;
+    }
+    
+    return notes.substring(0, maxDisplayLength) + '...';
+  },
+  
+  // 处理多行备注
+  formatMultilineNotes: function(notes) {
+    if (!notes) return '';
+    
+    // 使用 split 和 join 替代 replace
+    return notes.split('\r').join(' ').split('\n').join(' ');
+  },
+  
+  // 检查是否包含敏感词（示例）
+  containsSensitiveWords: function(text) {
+    if (!text) return false;
+    
+    var sensitiveWords = ['投诉', '举报', '退款', '差评'];
+    for (var i = 0; i < sensitiveWords.length; i++) {
+      if (text.indexOf(sensitiveWords[i]) !== -1) {
+        return true;
+      }
+    }
+    return false;
+  }
+};
+
+module.exports = {
+  formatNotes: tools.formatNotes,
+  getRemainingCount: tools.getRemainingCount,
+  validateNotes: tools.validateNotes,
+  getNotesPlaceholder: tools.getNotesPlaceholder,
+  getDisplayNotes: tools.getDisplayNotes,
+  formatMultilineNotes: tools.formatMultilineNotes,
+  containsSensitiveWords: tools.containsSensitiveWords,
+  maxLength: tools.maxLength,
+  hasSpecialChar: tools.hasSpecialChar,
+  filterSpecialChars: tools.filterSpecialChars
+}; 

@@ -1,0 +1,219 @@
+/* 字体定义 */
+:root {
+  --tdesign-font: 'tdesign';
+}
+
+/* 使用本地字体文件 */
+@font-face {
+  font-family: 'tdesign';
+  src: url('/assets/fonts/tdesign.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* 优化字体加载 */
+}
+
+/* 使用字体变量 */
+.t-icon {
+  font-family: var(--tdesign-font), system-ui, -apple-system;
+}
+
+/* 全局背景渐变 */
+page {
+  background: linear-gradient(135deg, rgba(255, 95, 21, 0.08), rgba(29, 149, 63, 0.05));
+  min-height: 100vh;
+}
+
+/* 卡片通用样式 */
+.card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8));
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 95, 21, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* 列表容器通用样式 */
+.list-container {
+  background: linear-gradient(135deg, rgba(255, 95, 21, 0.15), rgba(29, 149, 63, 0.1));
+  border-radius: 16rpx;
+  margin: 24rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 95, 21, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* 列表项通用样式 */
+.list-item {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.list-item:last-child {
+  margin-bottom: 0;
+}
+
+.list-item:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 标题通用样式 */
+.section-title {
+  font-size: 32rpx;
+  color: #333;
+  margin: 24rpx;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 8rpx;
+  height: 32rpx;
+  background: #FF5F15;
+  margin-right: 16rpx;
+  border-radius: 4rpx;
+}
+
+/* 按钮通用样式 */
+.btn-primary {
+  background: linear-gradient(135deg, #FF5F15, #FF7A3E) !important;
+  border: none !important;
+  color: #fff !important;
+  border-radius: 16rpx !important;
+  box-shadow: 0 4rpx 12rpx rgba(255, 95, 21, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 8rpx rgba(255, 95, 21, 0.1);
+}
+
+.btn-light {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 95, 21, 0.2) !important;
+  color: #FF5F15 !important;
+  border-radius: 16rpx !important;
+  backdrop-filter: blur(5px);
+}
+
+/* 输入框通用样式 */
+.input-box {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin: 24rpx;
+  border: 1px solid rgba(255, 95, 21, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+/* 图片通用样式 */
+.image-container {
+  border-radius: 12rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60rpx;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05));
+  pointer-events: none;
+}
+
+/* 页面通用内边距 */
+.page-padding {
+  padding: 24rpx;
+}
+
+/* 价格文本通用样式 */
+.price-text {
+  color: #FF5F15;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.price-text::before {
+  content: '¥';
+  font-size: 0.8em;
+  margin-right: 4rpx;
+}
+
+/* 加载状态通用样式 */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* 空状态通用样式 */
+.empty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64rpx 32rpx;
+  color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+/* 分割线通用样式 */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right,
+    transparent,
+    rgba(255, 95, 21, 0.1) 20%,
+    rgba(255, 95, 21, 0.1) 80%,
+    transparent
+  );
+  margin: 24rpx 0;
+}
+
+/* 装饰元素通用样式 */
+.decoration {
+  position: absolute;
+  width: 160rpx;
+  height: 160rpx;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.decoration::before,
+.decoration::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.decoration::before {
+  border: 8rpx solid #FF5F15;
+  border-radius: 50% 0 50% 50%;
+  transform: rotate(45deg);
+}
+
+.decoration::after {
+  border: 8rpx solid #1D953F;
+  border-radius: 50%;
+  transform: scale(0.8);
+} 

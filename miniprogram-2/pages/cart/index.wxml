@@ -1,0 +1,58 @@
+<!-- 分层购物车 -->
+<view class="cart-container page-padding">
+  <!-- 空购物车状态 -->
+  <block wx:if="{{!cartList.length}}">
+    <view class="cart-empty">
+      <image class="empty-img" src="/assets/cart-empty.png" />
+      <text class="empty-text">购物车还是空的</text>
+      <navigator url="/pages/home/home/index" open-type="switchTab" class="btn-primary">
+        去逛逛
+      </navigator>
+    </view>
+  </block>
+
+  <!-- 购物车列表 -->
+  <block wx:else>
+    <view class="cart-list">
+      <view class="card" wx:for="{{cartList}}" wx:key="skuId">
+        <view class="cart-item">
+          <view class="item-select">
+            <t-checkbox value="{{item.selected}}" bind:change="onSelectItem" data-sku-id="{{item.skuId}}" />
+          </view>
+          <view class="item-info">
+            <image class="item-img" src="{{item.primaryImage}}" mode="aspectFill" />
+            <view class="item-content">
+              <view class="item-title">{{item.title}}</view>
+              <view class="item-specs" wx:if="{{item.specs}}">
+                <text>{{item.specs}}</text>
+              </view>
+              <view class="item-price-wrap">
+                <price-component price="{{item.price}}" />
+                <t-stepper value="{{item.quantity}}" min="1" max="99" theme="filled" bind:change="onNumChange" data-sku-id="{{item.skuId}}" />
+              </view>
+            </view>
+          </view>
+          <view class="item-delete" bindtap="onDeleteItem" data-sku-id="{{item.skuId}}">
+            <t-icon name="delete" size="40rpx" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部结算栏 -->
+    <view class="cart-footer card">
+      <view class="footer-left">
+        <t-checkbox value="{{isAllSelected}}" bind:change="onSelectAll">全选</t-checkbox>
+        <view class="total-price">
+          <text>合计：</text>
+          <price-component price="{{totalPrice}}" />
+        </view>
+      </view>
+      <view class="btn-primary" bindtap="onSubmit">
+        结算({{selectedGoodsCount}})
+      </view>
+    </view>
+  </block>
+
+  <t-toast id="t-toast" />
+</view>

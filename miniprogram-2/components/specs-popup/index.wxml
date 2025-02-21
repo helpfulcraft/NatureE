@@ -1,0 +1,71 @@
+<view class="specs-popup {{visible ? 'show' : ''}}" catchtouchmove="true">
+  <view class="mask" bindtap="onClose"></view>
+  <view class="content">
+    <!-- 商品信息 -->
+    <view class="goods-info">
+      <image class="goods-image" src="{{goods.primaryImage || '/assets/images/default-goods.png'}}" mode="aspectFill" />
+      <view class="info-right">
+        <view class="price">
+          <text class="symbol">¥</text>
+          <text class="integer">{{currentPrice}}</text>
+        </view>
+        <view class="selected-specs" wx:if="{{isAllSelected}}">
+          已选：{{selectedSpecsText}}
+        </view>
+        <view class="stock">
+          库存：{{currentStock}}
+        </view>
+      </view>
+      <view class="close-btn" bindtap="onClose">×</view>
+    </view>
+
+    <!-- 规格选择 -->
+    <scroll-view scroll-y class="specs-container">
+      <view class="specs-group" wx:for="{{specs}}" wx:key="name" wx:for-item="spec" wx:for-index="specIndex">
+        <view class="specs-title">{{spec.name}}</view>
+        <view class="specs-values">
+          <view 
+            class="value-item {{value.selected ? 'selected' : ''}} {{value.disabled ? 'disabled' : ''}}"
+            wx:for="{{spec.values}}"
+            wx:key="name"
+            wx:for-item="value"
+            wx:for-index="valueIndex"
+            data-spec-index="{{specIndex}}"
+            data-value-index="{{valueIndex}}"
+            bindtap="onSelectSpec"
+          >
+            {{value.name}}
+          </view>
+        </view>
+      </view>
+
+      <!-- 数量选择 -->
+      <view class="quantity-container">
+        <view class="quantity-title">购买数量</view>
+        <view class="quantity-control">
+          <view 
+            class="minus {{buyNum <= minBuyNum ? 'disabled' : ''}}" 
+            data-type="minus"
+            bindtap="onQuantityChange"
+          >-</view>
+          <input 
+            type="number" 
+            class="quantity-input" 
+            value="{{buyNum}}"
+            disabled
+          />
+          <view 
+            class="plus {{buyNum >= maxBuyNum ? 'disabled' : ''}}"
+            data-type="plus" 
+            bindtap="onQuantityChange"
+          >+</view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <!-- 底部按钮 -->
+    <view class="bottom-button" bindtap="onConfirm">
+      确定
+    </view>
+  </view>
+</view> 

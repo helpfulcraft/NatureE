@@ -1,0 +1,54 @@
+<!--pages/usercenter/person-info/index.wxml-->
+<view class="person-info">
+  <!-- 信息列表 -->
+  <view class="info-list">
+    <view 
+      class="info-item"
+      wx:for="{{formItems}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onItemClick"
+    >
+      <view class="item-label">{{item.label}}</view>
+      <view class="item-content">
+        <block wx:if="{{item.type === 'avatar'}}">
+          <t-avatar 
+            image="{{userInfo.avatarUrl || ''}}" 
+            icon="{{!userInfo.avatarUrl ? 'user' : ''}}"
+            size="small"
+          />
+        </block>
+        <block wx:else>
+          <text>{{userInfo[item.key] || '未设置'}}</text>
+        </block>
+        <t-icon name="chevron-right" size="48rpx" color="#BBBBBB" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 修改弹窗 -->
+  <t-popup
+    visible="{{showUpdateDialog}}"
+    bind:visible-change="onPopupChange"
+    placement="center"
+  >
+    <view class="popup-content">
+      <view class="popup-header">
+        <view class="popup-title">修改{{formItems[updateField === 'nickName' ? 1 : 2].label}}</view>
+      </view>
+      <view class="popup-body">
+        <t-input
+          value="{{updateValue}}"
+          placeholder="请输入"
+          bind:change="onUpdateInput"
+          type="{{updateField === 'phone' ? 'number' : 'text'}}"
+          maxlength="{{updateField === 'phone' ? 11 : 20}}"
+        />
+      </view>
+      <view class="popup-footer">
+        <t-button variant="outline" block bindtap="hideUpdateDialog">取消</t-button>
+        <t-button theme="primary" block bindtap="onUpdateConfirm">确认</t-button>
+      </view>
+    </view>
+  </t-popup>
+</view>

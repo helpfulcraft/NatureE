@@ -1,0 +1,259 @@
+page {
+  background-color: #f5f5f5;
+}
+
+.content-wrapper {
+  margin-top: 340rpx;
+  position: relative;
+  padding: 0 30rpx;
+}
+
+.main-content {
+  height: 500rpx;
+}
+
+.order-group-wrapper {
+  margin-bottom: 16rpx;
+}
+
+.order-group {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 24rpx 0;
+}
+
+.order-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24rpx 24rpx;
+}
+
+.order-title-right {
+  display: flex;
+  align-items: center;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.order-status {
+  display: flex;
+  justify-content: space-around;
+}
+
+.order-group-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-group-item-text {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.order-group-item t-icon {
+  font-size: 48rpx;
+  color: #333;
+}
+
+/* 修改订单数量提示的样式 */
+.order-group-item::after {
+  content: attr(data-num);
+  position: absolute;
+  top: -10rpx;
+  right: 20rpx;
+  padding: 0 8rpx;
+  height: 32rpx;
+  min-width: 32rpx;
+  line-height: 32rpx;
+  font-size: 20rpx;
+  color: #fff;
+  background: #fa4126;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(50%);
+  box-sizing: border-box;
+  z-index: 1;
+  /* 添加这个条件：只在有内容时显示 */
+  display: none;
+}
+
+/* 当有数量时才显示红点 */
+.order-group-item[data-num]:not([data-num=""]):not([data-num="0"])::after {
+  display: flex;
+}
+
+/* 菜单样式 */
+.cell-box {
+  margin-bottom: 16rpx;
+}
+
+.t-cell-padding {
+  padding: 24rpx !important;
+}
+
+.order-group-note {
+  color: #999 !important;
+}
+
+.order-group__left {
+  margin-right: 16rpx;
+}
+
+/* 底部版本号 */
+.footer__version {
+  text-align: center;
+  margin-top: 50rpx;
+  color: #999;
+  margin-bottom: 30rpx;
+  font-size: 24rpx;
+}
+
+.icon-color {
+  color: #aaa;
+}
+.cell-class {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+
+.order-content {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  background-color: #fff;
+  border-radius: 16rpx;
+}
+
+.order-item {
+  flex: 1;
+  height: 180rpx;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+.order-content-box {
+  margin: auto;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.order-content-t {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #333;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.popup-content {
+  background: #f5f5f5;
+  margin-bottom: env(safe-area-inset-bottom);
+  border-radius: 16rpx 16rpx 0 0;
+}
+.popup-content .popup-title {
+  background: #fff;
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  height: 112rpx;
+  text-align: center;
+  line-height: 112rpx;
+  border-radius: 16rpx 16rpx 0 0;
+}
+
+.border-bottom-1px {
+  position: relative;
+}
+
+.border-bottom-1px::after {
+  position: absolute;
+  display: block;
+  content: '';
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  transform: scale(0.5);
+  transform-origin: left top;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+.popup-content .popup-phone,
+.popup-content .popup-close {
+  background: #fff;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333;
+}
+.popup-content .popup-phone.online {
+  margin-bottom: 20rpx;
+}
+.popup-content .popup-phone.online::after {
+  content: none;
+}
+.popup-content .popup-close {
+  color: #333;
+  border: 0;
+  margin-top: 16rpx;
+}
+
+.my-order {
+  border-radius: 10rpx;
+}
+
+.usercenter-page {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 40rpx 24rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  margin-right: 24rpx;
+}
+
+.info {
+  flex: 1;
+}
+
+.nickname {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.phone {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.menu-list {
+  background-color: #fff;
+}

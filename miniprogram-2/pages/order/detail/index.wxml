@@ -1,0 +1,135 @@
+<view class="detail-page">
+  <!-- 订单状态 -->
+  <view class="order-status">
+    <view class="status-text">{{orderDetail.statusText}}</view>
+    <t-steps
+      current="{{currentStep}}"
+      layout="vertical"
+      theme="dot"
+      readonly
+    >
+      <t-step
+        wx:for="{{steps}}"
+        wx:key="title"
+        title="{{item.title}}"
+        content="{{item.desc}}"
+      />
+    </t-steps>
+  </view>
+
+  <!-- 收货地址 -->
+  <view class="address-card">
+    <view class="address-info">
+      <view class="user-info">
+        <text class="name">{{orderDetail.address.name}}</text>
+        <text class="phone">{{orderDetail.address.phone}}</text>
+      </view>
+      <view class="address-detail">
+        {{orderDetail.address.provinceName}}{{orderDetail.address.cityName}}{{orderDetail.address.districtName}}{{orderDetail.address.detail}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="goods-list">
+    <view 
+      wx:for="{{orderDetail.goodsList}}" 
+      wx:key="id"
+      class="goods-item"
+    >
+      <t-image 
+        src="{{item.thumb}}" 
+        mode="aspectFill"
+        class="goods-thumb" 
+      />
+      <view class="goods-info">
+        <view class="goods-title">{{item.title}}</view>
+        <view class="goods-specs">{{item.specText}}</view>
+        <view class="goods-price">
+          <price price="{{item.price}}" fill />
+          <text class="goods-num">x{{item.num}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="order-info">
+    <view class="info-item">
+      <text>订单编号</text>
+      <view class="order-no">
+        <text>{{orderDetail.orderNo}}</text>
+        <t-button
+          size="small"
+          variant="text"
+          bindtap="onCopyOrderNo"
+        >复制</t-button>
+      </view>
+    </view>
+    <view class="info-item">
+      <text>下单时间</text>
+      <text>{{orderDetail.createTime}}</text>
+    </view>
+    <view class="info-item">
+      <text>支付方式</text>
+      <text>{{orderDetail.payTypeText}}</text>
+    </view>
+  </view>
+
+  <!-- 金额信息 -->
+  <view class="amount-info">
+    <view class="info-item">
+      <text>商品总价</text>
+      <price price="{{orderDetail.goodsAmount}}" fill />
+    </view>
+    <view class="info-item">
+      <text>运费</text>
+      <price price="{{orderDetail.freightAmount}}" fill />
+    </view>
+    <view class="info-item total">
+      <text>实付金额</text>
+      <price price="{{orderDetail.totalAmount}}" fill class="total-price" />
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-buttons">
+    <block wx:if="{{orderDetail.status === 1}}">
+      <t-button
+        size="large"
+        variant="outline"
+        bindtap="onCancelOrder"
+        class="action-btn"
+      >取消订单</t-button>
+      <t-button
+        theme="primary"
+        size="large"
+        bindtap="onGotoPay"
+        class="action-btn"
+      >去支付</t-button>
+    </block>
+    <block wx:elif="{{orderDetail.status === 3}}">
+      <t-button
+        size="large"
+        variant="outline"
+        bindtap="onViewLogistics"
+        class="action-btn"
+      >查看物流</t-button>
+      <t-button
+        theme="primary"
+        size="large"
+        bindtap="onConfirmReceipt"
+        class="action-btn"
+      >确认收货</t-button>
+    </block>
+    <t-button
+      wx:if="{{orderDetail.status !== 1}}"
+      size="large"
+      variant="outline"
+      bindtap="onContactService"
+      class="action-btn"
+    >联系客服</t-button>
+  </view>
+</view>
+
+<t-toast id="t-toast" /> 

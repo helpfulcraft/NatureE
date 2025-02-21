@@ -1,0 +1,101 @@
+<view class="order-detail">
+  <!-- 加载中状态 -->
+  <view class="loading" wx:if="{{loading}}">
+    <image class="loading-icon" src="{{loadingImage}}" mode="aspectFit" />
+  </view>
+
+  <block wx:else>
+    <!-- 订单状态 -->
+    <view class="status-section">
+      <view class="status-text">{{order.statusDesc}}</view>
+      <view class="status-desc" wx:if="{{order.status === OrderStatus.PENDING_RECEIPT}}">
+        商品正在配送中，请耐心等待
+      </view>
+    </view>
+
+    <!-- 收货地址 -->
+    <view class="address-section" bindtap="onSelectAddress">
+      <view class="address-info">
+        <view class="contact">{{formatContact(order.address)}}</view>
+        <view class="address">{{formatAddress(order.address)}}</view>
+      </view>
+    </view>
+
+    <!-- 商品列表 -->
+    <view class="goods-section">
+      <view class="goods-item" wx:for="{{order.goodsList}}" wx:key="id">
+        <image class="goods-image" src="{{item.primaryImage || item.thumb || defaultGoodsImage}}" mode="aspectFill" />
+        <view class="goods-info">
+          <view class="goods-name">{{item.title}}</view>
+          <view class="goods-sku" wx:if="{{item.specDesc || (item.specs && item.specs.length)}}">
+            <text class="sku-label">规格：</text>
+            <text class="sku-value">{{item.specDesc || item.specs.join(' ')}}</text>
+          </view>
+          <view class="goods-price-wrap">
+            <price-component price="{{item.price}}" />
+            <text class="goods-count">x{{item.num}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 订单信息 -->
+    <view class="order-info">
+      <view class="info-item">
+        <text class="label">订单编号</text>
+        <text class="value">{{order.orderNo}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">创建时间</text>
+        <text class="value">{{order.createTime}}</text>
+      </view>
+      <view class="info-item" wx:if="{{order.payTime}}">
+        <text class="label">支付时间</text>
+        <text class="value">{{order.payTime}}</text>
+      </view>
+      <view class="info-item" wx:if="{{order.deliveryTime}}">
+        <text class="label">发货时间</text>
+        <text class="value">{{order.deliveryTime}}</text>
+      </view>
+      <view class="info-item" wx:if="{{order.completeTime}}">
+        <text class="label">完成时间</text>
+        <text class="value">{{order.completeTime}}</text>
+      </view>
+    </view>
+
+    <!-- 金额信息 -->
+    <view class="amount-section">
+      <view class="amount-item">
+        <text class="label">商品总额</text>
+        <text class="value">¥{{order.totalAmount/100}}</text>
+      </view>
+      <view class="amount-item">
+        <text class="label">运费</text>
+        <text class="value">¥{{order.freight/100 || '0.00'}}</text>
+      </view>
+      <view class="amount-item total">
+        <text class="label">实付款</text>
+        <text class="value">¥{{order.totalAmount/100}}</text>
+      </view>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="footer-buttons">
+      <block wx:if="{{order.status === OrderStatus.PENDING_PAYMENT}}">
+        <button class="btn btn-default" bindtap="onCancelOrder">取消订单</button>
+        <button class="btn btn-primary" bindtap="onGotoPay">去支付</button>
+      </block>
+      
+      <block wx:elif="{{order.status === OrderStatus.PENDING_RECEIPT}}">
+        <button class="btn btn-primary" bindtap="onConfirmReceipt">确认收货</button>
+      </block>
+
+      <block wx:elif="{{order.status === OrderStatus.PENDING_COMMENT}}">
+        <button class="btn btn-default" bindtap="onDeleteOrder">删除订单</button>
+        <button class="btn btn-primary" bindtap="onGotoComment" wx:if="{{!order.hasComment}}">
+          去评价
+        </button>
+      </block>
+    </view>
+  </block>
+</view>

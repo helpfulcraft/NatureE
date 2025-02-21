@@ -1,0 +1,19 @@
+<view class="cart-bar {{fixed ? 'cart-bar--fixed' : ''}}" style="{{bottomHeight ? 'padding-bottom: ' + bottomHeight + 'rpx;' : ''}}">
+  <view class="cart-bar__left">
+    <view class="all-select" bindtap="handleSelectAll">
+      <image class="checkbox-icon" src="{{isAllSelected ? '/assets/images/selected.png' : '/assets/images/unselected.png'}}" />
+      <text class="select-text">全选</text>
+    </view>
+  </view>
+  
+  <view class="cart-bar__right">
+    <view class="price-wrap">
+      <text class="price-text">合计：</text>
+      <price-component price="{{totalAmount}}" />
+      <text class="discount" wx:if="{{totalDiscountAmount > 0}}">已优惠 ¥{{totalDiscountAmount/100}}</text>
+    </view>
+    <view class="submit-btn" bindtap="handleToSettle">
+      结算 ({{totalGoodsNum}})
+    </view>
+  </view>
+</view> 

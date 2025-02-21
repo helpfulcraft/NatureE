@@ -1,0 +1,71 @@
+<view class="search-page">
+  <!-- 搜索框 -->
+  <view class="search-header">
+    <t-search
+      value="{{searchValue}}"
+      placeholder="搜索商品"
+      focus="{{true}}"
+      bind:change="onChange"
+      bind:submit="onSearch"
+      bind:clear="onClear"
+    />
+  </view>
+
+  <!-- 搜索建议 -->
+  <block wx:if="{{searchValue && suggestList.length > 0}}">
+    <view class="search-suggest">
+      <view
+        class="suggest-item"
+        wx:for="{{suggestList}}"
+        wx:key="index"
+        data-value="{{item}}"
+        bind:tap="onSuggestTap"
+      >
+        <t-icon name="search" size="40rpx" />
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 历史记录和热门搜索 -->
+  <block wx:else>
+    <!-- 搜索历史 -->
+    <view class="search-history" wx:if="{{historyList.length > 0}}">
+      <view class="header">
+        <text class="title">搜索历史</text>
+        <t-icon 
+          name="delete" 
+          size="48rpx" 
+          bind:tap="clearHistory"
+        />
+      </view>
+      <view class="history-list">
+        <view
+          class="history-item"
+          wx:for="{{historyList}}"
+          wx:key="index"
+          data-value="{{item}}"
+          bind:tap="onHistoryTap"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 热门搜索 -->
+    <view class="hot-search" wx:if="{{hotList.length > 0}}">
+      <view class="title">热门搜索</view>
+      <view class="hot-list">
+        <view
+          class="hot-item"
+          wx:for="{{hotList}}"
+          wx:key="index"
+          data-value="{{item}}"
+          bind:tap="onHotTap"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </block>
+</view> 

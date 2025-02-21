@@ -1,0 +1,70 @@
+<view class="cart-group">
+  <!-- 有效商品列表 -->
+  <block wx:for="{{storeGoods}}" wx:key="storeId" wx:for-item="store">
+    <view class="store-card">
+      <!-- 店铺信息 -->
+      <view class="store-header">
+        <view class="store-checkbox" bindtap="onStoreSelect" data-index="{{index}}">
+          <image class="checkbox-icon" src="{{store.isSelected ? '/assets/images/selected.png' : '/assets/images/unselected.png'}}" />
+        </view>
+        <view class="store-name">{{store.storeName}}</view>
+      </view>
+
+      <!-- 商品列表 -->
+      <view class="goods-list">
+        <block wx:for="{{store.promotionGoodsList[0].goodsPromotionList}}" wx:key="id" wx:for-item="goods">
+          <view class="goods-item {{index === store.promotionGoodsList[0].goodsPromotionList.length - 1 ? 'goods-item--last' : ''}}">
+            <!-- 商品选择框 -->
+            <view class="goods-checkbox" bindtap="onGoodsSelect" data-index="{{index}}">
+              <image class="checkbox-icon" src="{{goods.isSelected ? '/assets/images/selected.png' : '/assets/images/unselected.png'}}" />
+            </view>
+
+            <!-- 商品信息 -->
+            <view class="goods-info" bindtap="onGoodsClick" data-index="{{index}}">
+              <image class="goods-image" src="{{goods.thumb}}" mode="aspectFill" />
+              <view class="goods-content">
+                <view class="goods-title">{{goods.title}}</view>
+                <view class="goods-specs" wx:if="{{goods.specs}}">{{goods.specs}}</view>
+                <view class="goods-price-wrap">
+                  <price-component price="{{goods.price}}" />
+                  <view class="goods-num">
+                    <view class="num-btn {{goods.quantity <= 1 ? 'num-btn--disabled' : ''}}" 
+                          bindtap="onQuantityChange" 
+                          data-index="{{index}}" 
+                          data-value="{{goods.quantity - 1}}">-</view>
+                    <view class="num-value">{{goods.quantity}}</view>
+                    <view class="num-btn {{goods.quantity >= goods.stock ? 'num-btn--disabled' : ''}}" 
+                          bindtap="onQuantityChange" 
+                          data-index="{{index}}" 
+                          data-value="{{goods.quantity + 1}}">+</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+
+  <!-- 失效商品列表 -->
+  <block wx:if="{{invalidGoodItems.length > 0}}">
+    <view class="invalid-goods">
+      <view class="invalid-header">
+        <text class="invalid-title">失效商品</text>
+        <view class="clear-invalid" bindtap="onClearInvalidGoods">清空失效商品</view>
+      </view>
+      <view class="invalid-list">
+        <block wx:for="{{invalidGoodItems}}" wx:key="id">
+          <view class="invalid-item {{index === invalidGoodItems.length - 1 ? 'invalid-item--last' : ''}}">
+            <image class="invalid-image" src="{{item.thumb}}" mode="aspectFill" />
+            <view class="invalid-content">
+              <view class="invalid-title">{{item.title}}</view>
+              <view class="invalid-status">商品已失效</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view> 

@@ -1,0 +1,146 @@
+.goods-card {
+  margin: 0;
+  border-radius: 12rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+}
+
+.goods-card__main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16rpx;
+  box-sizing: border-box;
+}
+
+.goods-card__thumb {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  border-radius: 8rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.goods-card__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.goods-card__thumb--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.goods-card__body {
+  flex: 1;
+  padding: 16rpx 8rpx;
+}
+
+.goods-card__upper {
+  margin-bottom: 16rpx;
+}
+
+.goods-card__title {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.goods-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 8rpx 0 0;
+  line-height: 1.2;
+}
+
+.goods-card__tag {
+  color: #fa4126;
+  background: #fff0ed;
+  font-size: 20rpx;
+  padding: 4rpx 8rpx;
+  border-radius: 4rpx;
+  margin: 0 8rpx 8rpx 0;
+}
+
+.goods-card__down {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.goods-card__origin-price {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 8rpx;
+}
+
+.goods-card__add-cart {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 8rpx;
+}
+
+.spec-for-price {
+  font-size: 36rpx;
+  color: #fa4126;
+  font-weight: bold;
+}
+
+.spec-for-symbol {
+  font-size: 24rpx;
+  color: #fa4126;
+}
+
+.goods-card__content {
+  padding: 16rpx;
+}
+
+.goods-card__price {
+  display: flex;
+  align-items: baseline;
+  margin-top: 8rpx;
+}
+
+.goods-card__price-number {
+  font-size: 36rpx;
+  color: #fa4126;
+  font-weight: bold;
+}
+
+.goods-card__price-origin {
+  margin-left: 8rpx;
+  font-size: 24rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.goods-card__sales {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.goods-card__unit {
+  font-size: 24rpx;
+  color: #fa4126;
+  margin-left: 4rpx;
+}

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "订单支付",
+  "usingComponents": {
+    "t-toast": "tdesign-miniprogram/toast/toast",
+    "t-dialog": "tdesign-miniprogram/dialog/dialog"
+  }
+}

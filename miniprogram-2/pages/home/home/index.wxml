@@ -1,0 +1,39 @@
+<!--pages/home/home/index.wxml-->
+<view class="home">
+  <t-loading 
+    wx:if="{{pageLoading}}" 
+    theme="circular" 
+    size="40rpx" 
+    loading
+  />
+  <block wx:else>
+    <!-- 搜索栏 -->
+    <search-bar
+      searchValue="{{searchValue}}"
+      bind:search="onSearch"
+    />
+
+    <!-- 分类导航 -->
+    <category-grid
+      categoryList="{{categoryList}}"
+      loading="{{pageLoading}}"
+    />
+
+    <!-- Banner -->
+    <t-swiper
+      wx:if="{{bannerList.length > 0}}"
+      current="{{swiperConfig.current}}"
+      autoplay="{{swiperConfig.autoplay}}"
+      duration="{{swiperConfig.duration}}"
+      interval="{{swiperConfig.interval}}"
+      list="{{bannerList}}"
+      navigation="{{swiperConfig.navigation}}"
+    />
+
+    <!-- 商品列表 -->
+    <goods-list
+      goodsList="{{goodsList}}"
+      loading="{{pageLoading}}"
+    />
+  </block>
+</view>

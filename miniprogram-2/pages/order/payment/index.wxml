@@ -1,0 +1,63 @@
+<view class="payment-page">
+  <!-- 支付金额 -->
+  <view class="payment-amount">
+    <text class="label">支付金额</text>
+    <price 
+      price="{{amount}}" 
+      fill
+      class="amount"
+      decimalSmaller
+    />
+  </view>
+
+  <!-- 支付方式列表 -->
+  <view class="payment-methods">
+    <t-radio-group
+      value="{{selectedMethod}}"
+      bind:change="onMethodChange"
+    >
+      <view 
+        wx:for="{{paymentMethods}}"
+        wx:key="value"
+        class="method-item"
+      >
+        <view class="method-info">
+          <t-icon 
+            name="{{item.icon}}" 
+            size="48rpx"
+            class="method-icon"
+          />
+          <view class="method-detail">
+            <text class="method-title">{{item.title}}</text>
+            <text class="method-desc">{{item.desc}}</text>
+          </view>
+        </view>
+        <t-radio value="{{item.value}}" />
+      </view>
+    </t-radio-group>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-buttons">
+    <t-button
+      theme="light"
+      size="large"
+      variant="outline"
+      bindtap="onCancel"
+      class="cancel-btn"
+    >
+      取消支付
+    </t-button>
+    <t-button
+      theme="primary"
+      size="large"
+      loading="{{loading}}"
+      bindtap="onPayConfirm"
+      class="confirm-btn"
+    >
+      确认支付
+    </t-button>
+  </view>
+</view>
+
+<t-toast id="t-toast" /> 

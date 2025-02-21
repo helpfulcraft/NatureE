@@ -1,0 +1,54 @@
+.price {
+  display: inline-flex;
+  align-items: baseline;
+  color: #fa4126;
+  font-weight: bold;
+}
+
+.price--outline {
+  color: #333;
+}
+
+.price--lighter {
+  color: #999;
+}
+
+.symbol {
+  font-size: 24rpx;
+  margin-right: 4rpx;
+}
+
+.integer {
+  font-size: 32rpx;
+}
+
+.decimal {
+  font-size: 32rpx;
+}
+
+.decimal--small {
+  font-size: 24rpx;
+}
+
+.price--large .symbol {
+  font-size: 28rpx;
+}
+
+.price--large .integer {
+  font-size: 40rpx;
+}
+
+.price--large .decimal {
+  font-size: 28rpx;
+}
+
+.delthrough {
+  color: #999;
+  text-decoration: line-through;
+}
+
+.delthrough .symbol,
+.delthrough .integer,
+.delthrough .decimal {
+  font-weight: normal;
+} 

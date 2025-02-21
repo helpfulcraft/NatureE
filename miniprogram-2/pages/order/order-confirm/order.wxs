@@ -1,0 +1,61 @@
+var tools = {
+  // 格式化价格显示
+  formatPrice: function(price) {
+    if (typeof price !== 'number') {
+      return '0.00';
+    }
+    return (price / 100).toFixed(2);
+  },
+
+  // 计算订单总价
+  calcTotalPrice: function(goodsList) {
+    if (!goodsList || !goodsList.length) {
+      return 0;
+    }
+    return goodsList.reduce(function(total, goods) {
+      return total + (goods.price * goods.quantity);
+    }, 0);
+  },
+
+  // 计算商品总数
+  calcTotalQuantity: function(goodsList) {
+    if (!goodsList || !goodsList.length) {
+      return 0;
+    }
+    return goodsList.reduce(function(total, goods) {
+      return total + goods.quantity;
+    }, 0);
+  },
+
+  // 格式化规格文本
+  formatSpecText: function(specInfo) {
+    if (!specInfo || !specInfo.length) {
+      return '';
+    }
+    return specInfo.map(function(spec) {
+      return spec.specValue;
+    }).join('，');
+  },
+
+  // 检查商品是否可购买
+  checkGoodsAvailable: function(goods) {
+    if (!goods) return false;
+    return goods.stockQuantity > 0 && goods.status === 'ONSALE';
+  },
+
+  // 格式化配送时间
+  formatDeliveryTime: function(timestamp) {
+    if (!timestamp) return '';
+    // wxs不支持Date对象，这里返回固定文本
+    return '预计2-3天内发货';
+  }
+};
+
+module.exports = {
+  formatPrice: tools.formatPrice,
+  calcTotalPrice: tools.calcTotalPrice,
+  calcTotalQuantity: tools.calcTotalQuantity,
+  formatSpecText: tools.formatSpecText,
+  checkGoodsAvailable: tools.checkGoodsAvailable,
+  formatDeliveryTime: tools.formatDeliveryTime
+}; 

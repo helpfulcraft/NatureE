@@ -1,0 +1,42 @@
+<view class="goods-list-page">
+  <t-loading wx:if="{{loading}}" theme="circular" size="40rpx" class="loading" />
+  
+  <block wx:else>
+    <block wx:if="{{!isEmpty}}">
+      <view class="goods-list">
+        <view 
+          class="goods-item" 
+          wx:for="{{goodsList}}" 
+          wx:key="id"
+          data-index="{{index}}"
+          bindtap="onGoodsClick"
+        >
+          <t-image 
+            src="{{item.primaryImage || item.image}}" 
+            mode="aspectFill"
+            width="100%"
+            height="330"
+            class="goods-image"
+          />
+          <view class="goods-info">
+            <view class="goods-name">{{item.title}}</view>
+          </view>
+        </view>
+      </view>
+
+      <t-loading
+        wx:if="{{loadMoreStatus === 0}}"
+        theme="circular"
+        size="40rpx"
+        class="loading"
+      />
+      <view wx:elif="{{loadMoreStatus === 1}}" class="no-more">没有更多了</view>
+    </block>
+
+    <view wx:else class="empty-state">
+      <t-image src="/images/empty.png" width="240" height="240" />
+      <view class="empty-text">暂无相关商品</view>
+      <view wx:if="{{keyword}}" class="empty-tips">换个关键词试试吧</view>
+    </view>
+  </block>
+</view> 

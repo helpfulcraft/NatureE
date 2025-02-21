@@ -1,0 +1,28 @@
+<!--pages/usercenter/login/index.wxml-->
+<view class="login-container">
+  <view class="logo-wrap">
+    <image class="logo" src="/assets/logo.png" mode="aspectFit" />
+    <view class="title">民族特色商城</view>
+    <view class="subtitle">传统与时尚的完美融合</view>
+  </view>
+
+  <view class="btn-wrap">
+    <t-button
+      t-class="login-btn"
+      theme="primary"
+      size="large"
+      loading="{{loading}}"
+      disabled="{{loading}}"
+      bindtap="onGetUserProfile"
+    >
+      微信一键登录
+    </t-button>
+  </view>
+
+  <view class="tips">
+    <view class="tip-item">登录即表示同意</view>
+    <navigator url="/pages/usercenter/agreement/index" class="link">《用户服务协议》</navigator>
+    <view class="tip-item">和</view>
+    <navigator url="/pages/usercenter/privacy/index" class="link">《隐私政策》</navigator>
+  </view>
+</view>

@@ -1,0 +1,71 @@
+<t-popup visible="{{show}}" placement="bottom" bind:visible-change="handlePopupHide">
+  <view class="popup-container">
+    <view class="popup-close" bindtap="handlePopupHide">
+      <t-icon name="close" size="36rpx" />
+    </view>
+    
+    <!-- 商品信息 -->
+    <view class="popup-sku-header">
+      <t-image t-class="popup-sku-header__img" src="{{currentSku.skuImage || src}}" />
+      <view class="popup-sku-header__goods-info">
+        <view class="popup-sku__goods-name">{{title}}</view>
+        <view class="popup-sku__selected-spec">{{getSelectedSpecText()}}</view>
+        <view class="popup-sku__price">
+          <price 
+            price="{{currentSku.price || 0}}"
+            fill
+            decimalSmaller
+          />
+        </view>
+      </view>
+    </view>
+
+    <!-- 规格选择 -->
+    <scroll-view scroll-y class="popup-sku-body">
+      <block wx:for="{{specList}}" wx:key="specId">
+        <view class="popup-sku-group">
+          <view class="popup-sku-group__title">{{item.title}}</view>
+          <view class="popup-sku-group__content">
+            <view 
+              wx:for="{{item.specValueList}}" 
+              wx:key="specValueId"
+              wx:for-item="value"
+              class="popup-sku-value {{value.selected ? 'selected' : ''}} {{value.disabled ? 'disabled' : ''}}"
+              data-spec-id="{{item.specId}}"
+              data-value-id="{{value.specValueId}}"
+              bindtap="onSpecSelect"
+            >
+              {{value.specValue}}
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <!-- 购买数量 -->
+      <view class="popup-sku-stepper">
+        <view class="popup-sku-stepper__title">购买数量</view>
+        <t-stepper 
+          value="{{buyNum}}"
+          min="{{minBuyNum}}"
+          max="{{maxBuyNum}}"
+          theme="filled"
+          bind:change="onNumberChange"
+        />
+      </view>
+    </scroll-view>
+
+    <!-- 底部按钮 -->
+    <view class="popup-sku-actions">
+      <t-button
+        block
+        theme="primary"
+        disabled="{{!isAllSelectedSku || !currentSku}}"
+        bind:tap="onConfirm"
+      >
+        确定
+      </t-button>
+    </view>
+  </view>
+</t-popup>
+
+<t-toast id="t-toast" />

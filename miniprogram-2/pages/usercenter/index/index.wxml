@@ -1,0 +1,75 @@
+<!--pages/usercenter/index/index.wxml-->
+<view class="user-center">
+  <!-- 用户信息 -->
+  <view class="user-info">
+    <t-avatar 
+      class="avatar" 
+      image="{{userInfo.avatarUrl || ''}}" 
+      size="large" 
+    />
+    <view class="info">
+      <view class="nickname">{{userInfo.nickName || '未登录'}}</view>
+      <view class="phone" wx:if="{{userInfo.phone}}">{{userInfo.phone}}</view>
+    </view>
+  </view>
+
+  <!-- 我的订单 -->
+  <view class="order-section">
+    <view class="section-header" bindtap="onAllOrderClick">
+      <text class="title">我的订单</text>
+      <view class="more">
+        <text>查看全部</text>
+        <t-icon name="chevron-right" size="40rpx" />
+      </view>
+    </view>
+    
+    <view class="order-types">
+      <view class="type-item" bindtap="onOrderTypeClick" data-type="1">
+        <t-badge count="{{orderCounts.unpaid || ''}}" offset="{{[0, 2]}}">
+          <t-icon name="wallet" size="48rpx" />
+        </t-badge>
+        <text>待付款</text>
+      </view>
+      <view class="type-item" bindtap="onOrderTypeClick" data-type="2">
+        <t-badge count="{{orderCounts.unshipped || ''}}" offset="{{[0, 2]}}">
+          <t-icon name="deliver" size="48rpx" />
+        </t-badge>
+        <text>待发货</text>
+      </view>
+      <view class="type-item" bindtap="onOrderTypeClick" data-type="3">
+        <t-badge count="{{orderCounts.unreceived || ''}}" offset="{{[0, 2]}}">
+          <t-icon name="package" size="48rpx" />
+        </t-badge>
+        <text>待收货</text>
+      </view>
+      <view class="type-item" bindtap="onOrderTypeClick" data-type="4">
+        <t-badge count="{{orderCounts.uncommented || ''}}" offset="{{[0, 2]}}">
+          <t-icon name="chat" size="48rpx" />
+        </t-badge>
+        <text>待评价</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 常用功能 -->
+  <view class="menu-section">
+    <view class="section-header">
+      <text class="title">常用功能</text>
+    </view>
+    
+    <view class="menu-list">
+      <view class="menu-item" bindtap="onAddressClick">
+        <t-icon name="location" size="48rpx" />
+        <text>收货地址</text>
+      </view>
+      <view class="menu-item" bindtap="onCustomerServiceClick">
+        <t-icon name="service" size="48rpx" />
+        <text>联系客服</text>
+      </view>
+      <view class="menu-item" bindtap="onSettingClick">
+        <t-icon name="setting" size="48rpx" />
+        <text>设置</text>
+      </view>
+    </view>
+  </view>
+</view>

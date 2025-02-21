@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "商品列表",
+  "onReachBottomDistance": 10,
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "t-search": "tdesign-miniprogram/search/search",
+    "t-loading": "tdesign-miniprogram/loading/loading",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-toast": "tdesign-miniprogram/toast/toast",
+    "t-tabs": "tdesign-miniprogram/tabs/tabs",
+    "t-tab-panel": "tdesign-miniprogram/tab-panel/tab-panel",
+    "goods-card": "/components/goods-card/index",
+    "load-more": "/components/load-more/index"
+  }
+}

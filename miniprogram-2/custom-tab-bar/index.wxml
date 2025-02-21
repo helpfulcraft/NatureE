@@ -1,0 +1,30 @@
+<view class="tab-bar">
+	<view 
+		wx:for="{{list}}" 
+		wx:key="index" 
+		class="tab-bar-item {{active === index ? 'active' : ''}}"
+		data-index="{{index}}"
+		data-item="{{item}}"
+		bindtap="switchTab"
+	>
+		<t-badge 
+			wx:if="{{item.icon === 'cart' && cartNum > 0}}" 
+			count="{{cartNum}}" 
+			offset="{{[0, 0]}}"
+		>
+			<t-icon 
+				name="{{item.icon}}" 
+				size="48rpx" 
+				color="{{active === index ? '#FA4126' : '#666666'}}"
+			/>
+		</t-badge>
+		<t-icon 
+			wx:else
+			name="{{item.icon}}" 
+			size="48rpx" 
+			color="{{active === index ? '#FA4126' : '#666666'}}"
+		/>
+		<view class="text">{{item.text}}</view>
+	</view>
+</view>
+

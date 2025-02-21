@@ -1,0 +1,46 @@
+<!--pages/usercenter/address/list/index.wxml-->
+<view class="address-list">
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <t-loading theme="circular" size="40rpx" loading />
+  </view>
+
+  <!-- 地址列表 -->
+  <view class="address-list-content" wx:else>
+    <block wx:if="{{addressList.length > 0}}">
+      <view class="address-item" wx:for="{{addressList}}" wx:key="id" bindtap="onSelectAddress" data-id="{{item.id}}">
+        <!-- 地址信息 -->
+        <view class="info">
+          <view class="user-info">
+            <text class="name">{{item.name}}</text>
+            <text class="phone">{{item.phone}}</text>
+            <text class="tag" wx:if="{{item.isDefault}}">默认</text>
+          </view>
+          <view class="address-info">
+            {{item.province}}{{item.city}}{{item.district}}{{item.detail}}
+          </view>
+        </view>
+        
+        <!-- 操作按钮 -->
+        <view class="operations">
+          <view class="edit" catchtap="onEditAddress" data-id="{{item.id}}">
+            <t-icon name="edit" size="40rpx" />
+          </view>
+          <view class="delete" catchtap="onDeleteAddress" data-id="{{item.id}}">
+            <t-icon name="delete" size="40rpx" />
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 空状态 -->
+    <view class="empty" wx:else>
+      <t-empty icon="info-circle-filled" description="暂无收货地址" />
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-btn">
+    <t-button theme="primary" block bindtap="onAddAddress">新增收货地址</t-button>
+  </view>
+</view>

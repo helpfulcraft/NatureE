@@ -1,0 +1,91 @@
+<view class="design-container">
+  <!-- 设计选项区 -->
+  <view class="options-panel">
+    <!-- 选择区域 -->
+    <text class="section-title">基本设置</text>
+    <t-dropdown-menu>
+      <t-dropdown-item
+        label="服装类型"
+        value="{{styleIndex}}"
+        options="{{styleOptions}}"
+        bindchange="onStyleChange"
+      />
+      <t-dropdown-item
+        label="设计风格"
+        value="{{themeIndex}}"
+        options="{{themeOptions}}"
+        bindchange="onThemeChange"
+      />
+    </t-dropdown-menu>
+
+    <!-- 颜色选择 -->
+    <view class="color-section">
+      <text class="section-title">主色调</text>
+      <view class="color-options">
+        <view 
+          wx:for="{{colors}}" 
+          wx:key="index"
+          class="color-item {{selectedColor === item ? 'selected' : ''}}"
+          style="background: {{item}}"
+          bindtap="onColorSelect"
+          data-color="{{item}}"
+        ></view>
+      </view>
+    </view>
+
+    <!-- 自定义描述 -->
+    <text class="section-title">个性化描述</text>
+    <t-textarea
+      value="{{description}}"
+      placeholder="添加更多细节描述，例如：云南特色、民族元素..."
+      maxlength="200"
+      indicator
+      bindinput="onDescriptionChange"
+      class="description-input"
+    />
+  </view>
+
+  <!-- 预览区 -->
+  <view class="preview-area">
+    <!-- 云南特色装饰元素 - 使用CSS实现 -->
+    <view class="decoration decoration-top-right"></view>
+    <view class="decoration decoration-bottom-left"></view>
+    
+    <image 
+      wx:if="{{generatedImage}}" 
+      src="{{generatedImage}}" 
+      mode="aspectFit"
+      class="preview-image"
+      bindtap="previewImage"
+    />
+    <view wx:else class="placeholder">
+      <t-icon name="image" size="48" />
+      <text>设计预览区</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <t-button
+      block
+      theme="primary"
+      loading="{{isGenerating}}"
+      disabled="{{isGenerating}}"
+      bindtap="onGenerate"
+      size="large"
+    >
+      {{isGenerating ? '正在设计中...' : '开始设计'}}
+    </t-button>
+  </view>
+
+  <!-- 悬浮保存按钮 -->
+  <view 
+    class="floating-save-btn {{!generatedImage ? 'disabled' : ''}}"
+    bindtap="{{generatedImage ? 'onSave' : ''}}"
+  >
+    <t-icon name="download" size="24" />
+  </view>
+
+  <!-- 加载提示 -->
+  <t-toast id="t-toast" />
+</view> 

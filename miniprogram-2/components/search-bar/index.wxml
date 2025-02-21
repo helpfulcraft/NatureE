@@ -1,0 +1,9 @@
+<view class="search-bar">
+  <t-search
+    value="{{searchValue}}"
+    placeholder="搜索民族服饰"
+    shape="round"
+    bind:submit="onSearch"
+    bind:focus="onFocus"
+  />
+</view> 

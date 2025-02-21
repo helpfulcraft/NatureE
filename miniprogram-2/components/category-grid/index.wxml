@@ -1,0 +1,24 @@
+<view class="category-grid">
+  <t-loading wx:if="{{loading}}" theme="dots" />
+  <view class="grid-container" wx:else>
+    <view 
+      class="grid-item" 
+      wx:for="{{categoryList.length ? categoryList : defaultCategories}}" 
+      wx:key="id"
+      data-id="{{item.id}}"
+      data-name="{{item.name}}"
+      data-index="{{index}}"
+      bindtap="onTapCategory"
+      hover-class="grid-item-hover"
+      hover-stay-time="100"
+    >
+      <image 
+        src="{{item.icon}}" 
+        class="category-image"
+        mode="aspectFill"
+        data-id="{{item.id}}"
+      />
+      <text class="category-name">{{item.name}}</text>
+    </view>
+  </view>
+</view> 

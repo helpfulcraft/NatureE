@@ -1,0 +1,38 @@
+.load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24rpx 0;
+}
+
+.text {
+  font-size: 24rpx;
+  color: #999;
+  margin: 0 16rpx;
+}
+
+.line {
+  width: 80rpx;
+  height: 1px;
+  background: #eee;
+}
+
+.load-more__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16rpx;
+}
+
+.load-more__loading {
+  margin-right: 12rpx;
+}
+
+.load-more__text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.load-more__text--error {
+  color: #fa4126;
+} 

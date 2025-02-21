@@ -1,0 +1,75 @@
+<view class="logistics-page">
+  <!-- 物流信息头部 -->
+  <view class="logistics-header">
+    <view class="status-info">
+      <t-icon 
+        wx:if="{{logistics.status === 2}}"
+        name="check-circle" 
+        size="48rpx"
+        color="#07c160"
+      />
+      <t-icon 
+        wx:elif="{{logistics.status === 3}}"
+        name="error-circle" 
+        size="48rpx"
+        color="#fa4126"
+      />
+      <t-icon 
+        wx:else
+        name="delivery" 
+        size="48rpx"
+        color="#0052d9"
+      />
+      <text class="status-text">{{logistics.statusText}}</text>
+    </view>
+
+    <!-- 快递信息 -->
+    <view class="express-info">
+      <view class="info-item">
+        <text class="label">快递公司</text>
+        <text class="value">{{logistics.company}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">运单编号</text>
+        <view class="tracking-no">
+          <text class="value">{{logistics.trackingNo}}</text>
+          <t-button
+            size="small"
+            variant="text"
+            bindtap="onCopyTrackingNo"
+          >复制</t-button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 物流轨迹 -->
+  <view class="logistics-traces">
+    <view class="traces-title">
+      <text>物流轨迹</text>
+      <t-button
+        size="small"
+        variant="text"
+        icon="refresh"
+        loading="{{loading}}"
+        bindtap="onRefresh"
+      >刷新</t-button>
+    </view>
+    <t-steps
+      layout="vertical"
+      theme="dot"
+      readonly
+      current="{{0}}"
+    >
+      <t-step
+        wx:for="{{logistics.traces}}"
+        wx:key="time"
+        title="{{item.content}}"
+        content="{{item.time}}"
+        status="{{index === 0 ? 'process' : 'finish'}}"
+      />
+    </t-steps>
+  </view>
+</view>
+
+<t-toast id="t-toast" /> 

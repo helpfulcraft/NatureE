@@ -1,0 +1,18 @@
+{
+  "navigationBarTitleText": "首页",
+  "enablePullDownRefresh": false,
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "t-loading": "../../../miniprogram_npm/tdesign-miniprogram/loading/loading",
+    "t-swiper": "../../../miniprogram_npm/tdesign-miniprogram/swiper/swiper",
+    "t-grid": "../../../miniprogram_npm/tdesign-miniprogram/grid/grid",
+    "t-grid-item": "../../../miniprogram_npm/tdesign-miniprogram/grid-item/grid-item",
+    "t-image": "../../../miniprogram_npm/tdesign-miniprogram/image/image",
+    "t-toast": "../../../miniprogram_npm/tdesign-miniprogram/toast/toast",
+    "goods-list": "../../../components/goods-list/index",
+    "load-more": "../../../components/load-more/index",
+    "price": "../../../components/price/index",
+    "category-grid": "../../../components/category-grid/index",
+    "search-bar": "../../../components/search-bar/index"
+  }
+}

@@ -1,0 +1,53 @@
+<view class="container">
+  <view class="header">
+    <text class="title">错误日志</text>
+    <view class="actions">
+      <t-button size="small" theme="danger" bindtap="clearLogs">清理</t-button>
+      <t-button size="small" theme="primary" bindtap="exportLogs">导出</t-button>
+    </view>
+  </view>
+
+  <t-loading wx:if="{{loading}}" />
+
+  <scroll-view 
+    wx:else 
+    scroll-y 
+    class="log-list {{logs.length ? '' : 'empty'}}"
+  >
+    <block wx:if="{{logs.length}}">
+      <view 
+        wx:for="{{logs}}" 
+        wx:key="timestamp"
+        class="log-item"
+      >
+        <view class="log-header">
+          <text class="log-type {{item.type}}">{{item.type}}</text>
+          <text class="log-code">{{item.code}}</text>
+          <text class="log-time">{{item.formattedTime}}</text>
+        </view>
+        
+        <view class="log-content">
+          <view class="log-message">{{item.message}}</view>
+          <view class="log-stack" wx:if="{{item.stack}}">{{item.stack}}</view>
+        </view>
+
+        <view class="log-context">
+          <view class="context-item">
+            <text class="label">页面:</text>
+            <text class="value">{{item.context.page}}</text>
+          </view>
+          <view class="context-item">
+            <text class="label">系统:</text>
+            <text class="value">{{item.context.systemInfo.system}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <t-empty
+      wx:else
+      icon="info-circle-filled"
+      description="暂无错误日志"
+    />
+  </scroll-view>
+</view> 

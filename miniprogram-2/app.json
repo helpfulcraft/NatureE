@@ -1,0 +1,100 @@
+{
+  "pages": [
+    "pages/home/home/index",
+    "pages/category/index",
+    "pages/cart/index",
+    "pages/my/index",
+    "pages/home/search/index",
+    "pages/category/list/index",
+    "pages/api-test/index",
+    "pages/design/design"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "购物商城",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#666666",
+    "selectedColor": "#FF5F15",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/index",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/cart/index",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "subpackages": [
+    {
+      "root": "pages/goods",
+      "name": "goods",
+      "pages": [
+        "details/index"
+      ]
+    },
+    {
+      "root": "pages/order",
+      "name": "order",
+      "pages": [
+        "order-confirm/index",
+        "order-list/index",
+        "order-detail/index",
+        "order-payment/index",
+        "logistics/index",
+        "comment/index"
+      ]
+    },
+    {
+      "root": "pages/usercenter",
+      "name": "usercenter",
+      "pages": [
+        "address/list/index",
+        "address/edit/index",
+        "person-info/index",
+        "login/index"
+      ]
+    },
+    {
+      "root": "pages/ai-service",
+      "name": "ai-service",
+      "pages": [
+        "index"
+      ]
+    }
+  ],
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-input": "tdesign-miniprogram/input/input",
+    "t-avatar": "tdesign-miniprogram/avatar/avatar",
+    "t-dialog": "tdesign-miniprogram/dialog/dialog",
+    "t-toast": "tdesign-miniprogram/toast/toast"
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,101 @@
+.category-grid {
+  background: linear-gradient(135deg, rgba(255, 95, 21, 0.15), rgba(29, 149, 63, 0.1));
+  padding: 20rpx 0;
+  margin: 20rpx 24rpx;
+  position: relative;
+  z-index: 1;
+  border-radius: 16rpx;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 95, 21, 0.1);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  padding: 16rpx;
+  position: relative;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16rpx;
+  position: relative;
+  cursor: pointer;
+  min-height: 160rpx;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* 垂直分割线 */
+.grid-item::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: linear-gradient(to bottom, 
+    transparent,
+    rgba(255, 95, 21, 0.3) 20%,
+    rgba(255, 95, 21, 0.3) 80%,
+    transparent
+  );
+}
+
+/* 水平分割线 */
+.grid-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  width: 70%;
+  height: 1px;
+  background: linear-gradient(to right,
+    transparent,
+    rgba(255, 95, 21, 0.3) 20%,
+    rgba(255, 95, 21, 0.3) 80%,
+    transparent
+  );
+}
+
+/* 移除最后一行的水平分割线 */
+.grid-item:nth-last-child(-n+4)::before {
+  display: none;
+}
+
+/* 移除最后一列的垂直分割线 */
+.grid-item:nth-child(4n)::after {
+  display: none;
+}
+
+.grid-item-hover {
+  transform: translateY(2rpx);
+}
+
+.grid-item-hover .category-image {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 8rpx rgba(255, 95, 21, 0.2);
+}
+
+.category-image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.category-name {
+  font-size: 24rpx;
+  color: #333;
+  margin-top: 16rpx;
+  text-align: center;
+  pointer-events: none;
+  font-weight: 500;
+} 

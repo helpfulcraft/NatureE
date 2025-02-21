@@ -1,0 +1,157 @@
+var tools = {
+  // 发票类型映射
+  invoiceTypeMap: {
+    '1': '增值税专用发票',
+    '2': '增值税普通发票',
+    '3': '电子普通发票'
+  },
+
+  // 发票抬头类型映射
+  titleTypeMap: {
+    '1': '企业',
+    '2': '个人'
+  },
+
+  // 发票内容类型映射
+  contentTypeMap: {
+    '1': '商品明细',
+    '2': '商品类别'
+  },
+
+  // 格式化发票类型显示
+  formatInvoiceType: function(type) {
+    return tools.invoiceTypeMap[type] || '未选择';
+  },
+
+  // 格式化发票抬头显示
+  formatTitleType: function(type) {
+    return tools.titleTypeMap[type] || '未选择';
+  },
+
+  // 格式化发票内容显示
+  formatContentType: function(type) {
+    return tools.contentTypeMap[type] || '未选择';
+  },
+
+  // 验证发票信息完整性
+  validateInvoiceInfo: function(invoiceData) {
+    if (!invoiceData) return false;
+
+    // 检查必填字段
+    var requiredFields = ['invoiceType', 'titleType', 'contentType', 'buyerName'];
+    for (var i = 0; i < requiredFields.length; i++) {
+      if (!invoiceData[requiredFields[i]]) {
+        return false;
+      }
+    }
+
+    // 企业类型需要税号
+    if (invoiceData.titleType === '1' && !invoiceData.buyerTaxNo) {
+      return false;
+    }
+
+    // 电子发票需要邮箱
+    if (invoiceData.invoiceType === '3' && !invoiceData.email) {
+      return false;
+    }
+
+    return true;
+  },
+
+  // 获取发票信息摘要
+  getInvoiceSummary: function(invoiceData) {
+    if (!invoiceData || !invoiceData.invoiceType) {
+      return '不开发票';
+    }
+
+    var summary = tools.formatInvoiceType(invoiceData.invoiceType);
+    if (invoiceData.titleType) {
+      summary += ' - ' + tools.formatTitleType(invoiceData.titleType);
+    }
+    if (invoiceData.buyerName) {
+      summary += ' - ' + invoiceData.buyerName;
+    }
+
+    return summary;
+  },
+
+  // 检查税号格式
+  validateTaxNo: function(taxNo) {
+    if (!taxNo) return false;
+    
+    // 检查长度
+    if (taxNo.length < 15 || taxNo.length > 20) {
+      return false;
+    }
+    
+    // 检查字符
+    var validChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for (var i = 0; i < taxNo.length; i++) {
+      if (validChars.indexOf(taxNo[i]) === -1) {
+        return false;
+      }
+    }
+    
+    return true;
+  },
+
+  // 检查邮箱格式
+  validateEmail: function(email) {
+    if (!email) return false;
+    
+    // 1. 检查基本格式
+    var atIndex = email.indexOf('@');
+    if (atIndex <= 0 || atIndex === email.length - 1) {
+      return false;
+    }
+    
+    // 2. 分割邮箱部分
+    var localPart = email.slice(0, atIndex);
+    var domainPart = email.slice(atIndex + 1);
+    
+    // 3. 检查本地部分
+    var validLocalChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_.-';
+    for (var i = 0; i < localPart.length; i++) {
+      if (validLocalChars.indexOf(localPart[i]) === -1) {
+        return false;
+      }
+    }
+    
+    // 4. 检查域名部分
+    var domains = domainPart.split('.');
+    if (domains.length < 2) {
+      return false;
+    }
+    
+    // 5. 检查顶级域名长度
+    var tld = domains[domains.length - 1];
+    if (tld.length < 2 || tld.length > 6) {
+      return false;
+    }
+    
+    // 6. 检查每个域名部分
+    var validDomainChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-';
+    for (var j = 0; j < domains.length; j++) {
+      var domain = domains[j];
+      if (domain.length === 0) return false;
+      
+      for (var k = 0; k < domain.length; k++) {
+        if (validDomainChars.indexOf(domain[k]) === -1) {
+          return false;
+        }
+      }
+    }
+    
+    return true;
+  }
+};
+
+module.exports = {
+  formatInvoiceType: tools.formatInvoiceType,
+  formatTitleType: tools.formatTitleType,
+  formatContentType: tools.formatContentType,
+  validateInvoiceInfo: tools.validateInvoiceInfo,
+  getInvoiceSummary: tools.getInvoiceSummary,
+  validateTaxNo: tools.validateTaxNo,
+  validateEmail: tools.validateEmail
+}; 

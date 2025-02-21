@@ -1,0 +1,54 @@
+<view style="text-align: center; color: #b9b9b9" wx:if="{{pageLoading}}">
+  <t-loading theme="circular" size="40rpx" text="加载中..." inherit-color />
+</view>
+
+<view class="goods-list-container" wx:else>
+  <view class="search-wrap">
+    <t-search
+      t-class="t-search"
+      t-class-input="t-search__input"
+      t-class-input-container="t-search__input-container"
+      placeholder="请输入商品名称"
+      leftIcon=""
+    >
+      <t-icon slot="left-icon" prefix="wr" name="search" size="40rpx" color="#bbb" />
+    </t-search>
+  </view>
+
+  <view class="filter-tabs">
+    <t-tabs
+      value="{{activeTab}}"
+      bind:change="handleFilterChange"
+      t-class="filter-tabs__value"
+      t-class-active="filter-tabs__active"
+    >
+      <t-tab-panel label="综合" value="0" />
+      <t-tab-panel 
+        label="价格{{sorts === 'price-asc' ? '↑' : sorts === 'price-desc' ? '↓' : ''}}" 
+        value="1" 
+      />
+      <t-tab-panel label="销量" value="2" />
+    </t-tabs>
+  </view>
+
+  <view class="goods-list-wrap">
+    <view class="goods-list">
+      <block wx:for="{{goodsList}}" wx:key="index">
+        <goods-card
+          data-index="{{index}}"
+          goods="{{item}}"
+          bind:click="gotoGoodsDetail"
+          bind:addcart="addCart"
+        />
+      </block>
+    </view>
+  </view>
+
+  <load-more
+    list-is-empty="{{!goodsList.length}}"
+    status="{{loadMoreStatus}}"
+    bind:retry="onRetryLoad"
+  />
+</view>
+
+<t-toast id="t-toast" />

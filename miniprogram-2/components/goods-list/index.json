@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "t-image": "../../miniprogram_npm/tdesign-miniprogram/image/image",
+    "t-loading": "../../miniprogram_npm/tdesign-miniprogram/loading/loading",
+    "price": "../price/index",
+    "load-more": "../load-more/index"
+  }
+}

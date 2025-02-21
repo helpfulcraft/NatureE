@@ -1,0 +1,87 @@
+/* pages/usercenter/address/list/index.wxss */
+.address-list {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 120rpx;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+}
+
+.address-list-content {
+  padding: 20rpx;
+}
+
+.address-item {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  flex: 1;
+  margin-right: 20rpx;
+}
+
+.user-info {
+  margin-bottom: 12rpx;
+}
+
+.name {
+  font-size: 32rpx;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.phone {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #ff4646;
+  border: 1rpx solid #ff4646;
+  padding: 2rpx 12rpx;
+  border-radius: 16rpx;
+  margin-left: 16rpx;
+}
+
+.address-info {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.4;
+}
+
+.operations {
+  display: flex;
+  align-items: center;
+}
+
+.edit, .delete {
+  padding: 20rpx;
+  color: #666;
+}
+
+.empty {
+  padding: 120rpx 0;
+  text-align: center;
+}
+
+.bottom-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx;
+  background: #fff;
+  box-shadow: 0 -2rpx 8rpx rgba(0, 0, 0, 0.1);
+}

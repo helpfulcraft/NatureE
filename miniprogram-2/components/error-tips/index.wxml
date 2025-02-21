@@ -1,0 +1,30 @@
+<t-toast id="t-toast" wx:if="{{type === 'toast'}}" />
+
+<t-dialog
+  wx:elif="{{type === 'modal'}}"
+  visible="{{visible}}"
+  title="{{title}}"
+  content="{{content}}"
+  confirm-btn="确定"
+  cancel-btn="{{buttons.length > 1 ? '取消' : ''}}"
+  bind:confirm="onConfirm"
+  bind:cancel="onCancel"
+/>
+
+<view wx:else class="error-inline {{visible ? 'visible' : ''}}">
+  <t-icon name="error" size="32rpx" />
+  <text>{{content}}</text>
+  <view class="error-buttons" wx:if="{{buttons.length}}">
+    <t-button
+      wx:for="{{buttons}}"
+      wx:key="text"
+      size="small"
+      theme="{{item.theme || 'default'}}"
+      variant="text"
+      data-index="{{index}}"
+      bindtap="onButtonClick"
+    >
+      {{item.text}}
+    </t-button>
+  </view>
+</view> 

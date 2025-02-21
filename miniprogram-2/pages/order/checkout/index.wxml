@@ -1,0 +1,115 @@
+<view class="checkout-page">
+  <!-- 收货地址 -->
+  <view class="address-card" bindtap="onSelectAddress">
+    <block wx:if="{{address}}">
+      <view class="address-info">
+        <view class="user-info">
+          <text class="name">{{address.name}}</text>
+          <text class="phone">{{address.phone}}</text>
+        </view>
+        <view class="address-detail">{{address.provinceName}}{{address.cityName}}{{address.districtName}}{{address.detail}}</view>
+      </view>
+    </block>
+    <view wx:else class="address-empty">
+      <text>请选择收货地址</text>
+    </view>
+    <t-icon name="chevron-right" size="40rpx" color="#BBBBBB" />
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="goods-list">
+    <view 
+      wx:for="{{cartList}}" 
+      wx:key="id"
+      class="goods-item"
+    >
+      <t-image 
+        src="{{item.thumb}}" 
+        mode="aspectFill"
+        class="goods-thumb" 
+      />
+      <view class="goods-info">
+        <view class="goods-title">{{item.title}}</view>
+        <view class="goods-specs">{{item.specText}}</view>
+        <view class="goods-price">
+          <price price="{{item.price}}" fill />
+          <text class="goods-num">x{{item.num}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="order-info">
+    <view class="info-item">
+      <text>商品总价</text>
+      <price price="{{totalAmount}}" fill />
+    </view>
+    <view class="info-item">
+      <text>运费</text>
+      <price price="{{freight}}" fill />
+    </view>
+    <view class="info-item total">
+      <text>实付金额</text>
+      <price price="{{totalAmount + freight}}" fill class="total-price" />
+    </view>
+  </view>
+
+  <!-- 支付方式 -->
+  <view class="payment-select" bindtap="onSelectPayment">
+    <text>支付方式</text>
+    <view class="payment-value">
+      <text>{{paymentList[selectedPayment === 'wxpay' ? 0 : 1].text}}</text>
+      <t-icon name="chevron-right" size="40rpx" color="#BBBBBB" />
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="total-info">
+      <text>实付金额：</text>
+      <price price="{{totalAmount + freight}}" fill class="total-price" />
+    </view>
+    <t-button
+      theme="primary"
+      size="large"
+      loading="{{submitLoading}}"
+      bind:tap="onSubmit"
+      class="submit-btn"
+    >
+      提交订单
+    </t-button>
+  </view>
+
+  <!-- 支付方式选择弹窗 -->
+  <t-popup
+    visible="{{paymentVisible}}"
+    placement="bottom"
+    bind:visible-change="onPaymentVisibleChange"
+  >
+    <view class="payment-popup">
+      <view class="popup-header">
+        <text>选择支付方式</text>
+        <t-icon 
+          name="close" 
+          size="40rpx" 
+          bindtap="onPaymentVisibleChange"
+        />
+      </view>
+      <t-radio-group 
+        value="{{selectedPayment}}" 
+        bind:change="onPaymentChange"
+      >
+        <t-radio
+          wx:for="{{paymentList}}"
+          wx:key="value"
+          value="{{item.value}}"
+          label="{{item.text}}"
+          icon="{{item.icon}}"
+        />
+      </t-radio-group>
+    </view>
+  </t-popup>
+</view>
+
+<t-toast id="t-toast" /> 

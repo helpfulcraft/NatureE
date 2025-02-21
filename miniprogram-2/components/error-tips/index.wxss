@@ -1,0 +1,33 @@
+.error-inline {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx;
+  background: #fff2f0;
+  border-radius: 8rpx;
+  margin: 16rpx 0;
+  opacity: 0;
+  transform: translateY(-10rpx);
+  transition: all 0.3s ease;
+}
+
+.error-inline.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.error-inline t-icon {
+  color: #fa4126;
+  margin-right: 12rpx;
+}
+
+.error-inline text {
+  flex: 1;
+  font-size: 26rpx;
+  color: #333;
+}
+
+.error-buttons {
+  display: flex;
+  gap: 16rpx;
+  margin-left: 24rpx;
+} 

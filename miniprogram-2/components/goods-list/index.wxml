@@ -1,0 +1,30 @@
+<view class="goods-list">
+  <block wx:if="{{goodsList.length > 0}}">
+    <view 
+      class="goods-item" 
+      wx:for="{{goodsList}}" 
+      wx:key="id"
+      data-index="{{index}}"
+      bind:tap="onTapGoods"
+    >
+      <t-image 
+        src="{{item.imgUrl || item.primaryImage}}" 
+        mode="aspectFill"
+        class="goods-image"
+        error="default-image"
+        loading="fade"
+        shape="round"
+        lazy
+      />
+      <view class="goods-info">
+        <view class="goods-name">{{item.name}}</view>
+        <price 
+          price="{{item.price}}" 
+          class="goods-price"
+        />
+      </view>
+    </view>
+  </block>
+  <t-loading wx:if="{{loading}}" />
+  <load-more wx:else status="{{loadMoreStatus}}" />
+</view> 

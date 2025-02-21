@@ -1,0 +1,65 @@
+<!--pages/order/order-payment/index.wxml-->
+<view class="payment-page">
+  <!-- 支付金额 -->
+  <view class="amount-section">
+    <view class="amount-title">支付金额</view>
+    <view class="amount-value">
+      <text class="currency">¥</text>
+      <text class="integer">{{totalAmount}}</text>
+      <text class="decimal">.00</text>
+    </view>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="order-info">
+    <view class="amount">
+      <text class="currency">¥</text>
+      <text class="value">{{totalAmount}}</text>
+    </view>
+    <view class="order-detail">
+      <view class="item">
+        <text class="label">商品</text>
+        <text class="value">{{goodsName}}</text>
+      </view>
+      <view class="item">
+        <text class="label">订单号</text>
+        <text class="value">{{orderNo}}</text>
+      </view>
+      <view class="item">
+        <text class="label">下单时间</text>
+        <text class="value">{{createTime}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 支付方式 -->
+  <view class="payment-methods">
+    <view class="title">支付方式</view>
+    <view class="method-list">
+      <view 
+        class="method-item {{selectedMethod === 'wechat' ? 'selected' : ''}}"
+        data-method="wechat"
+        bindtap="onSelectMethod"
+      >
+        <t-icon name="logo-wechat" size="48rpx" />
+        <text class="name">微信支付</text>
+        <t-icon wx:if="{{selectedMethod === 'wechat'}}" name="check" class="check-icon" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-button">
+    <button 
+      class="submit-btn {{submitting ? 'disabled' : ''}}"
+      loading="{{submitting}}"
+      disabled="{{submitting}}"
+      bindtap="onSubmitPay"
+    >
+      确认支付
+    </button>
+  </view>
+
+  <!-- Toast 提示 -->
+  <t-toast id="t-toast" />
+</view>

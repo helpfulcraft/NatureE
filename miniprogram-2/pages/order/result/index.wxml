@@ -1,0 +1,21 @@
+<!-- 支付结果页 -->
+<view class="result-page">
+  <view class="result-content">
+    <!-- 状态图标 -->
+    <view class="icon-wrapper {{status}}">
+      <t-icon name="{{icon}}" size="64rpx" />
+    </view>
+
+    <!-- 状态信息 -->
+    <view class="message">{{message}}</view>
+
+    <!-- 操作按钮 -->
+    <view class="buttons">
+      <t-button theme="primary" size="large" block bind:tap="onViewOrder">查看订单</t-button>
+      <t-button theme="default" size="large" block bind:tap="onBackToHome" class="back-btn">返回首页</t-button>
+    </view>
+  </view>
+</view>
+
+<!-- Toast 提示 -->
+<t-toast id="t-toast" /> 

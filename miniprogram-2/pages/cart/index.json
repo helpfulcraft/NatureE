@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "购物车",
+  "usingComponents": {
+    "t-checkbox": "tdesign-miniprogram/checkbox/checkbox",
+    "t-stepper": "tdesign-miniprogram/stepper/stepper",
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-toast": "tdesign-miniprogram/toast/toast",
+    "cart-empty": "/components/cart-empty/index",
+    "cart-group": "/components/cart-group/index",
+    "cart-bar": "/components/cart-bar/index",
+    "price-component": "/components/price/index"
+  }
+}

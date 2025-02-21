@@ -61,6 +61,7 @@ npm install
 3. Stable Diffusion 配置
 - 启动参数需要加入 `--api` 和 `--listen`
 - 默认端口 7860
+- API 已配置为本地地址 `http://127.0.0.1:7860`
 
 ## 本地开发
 
@@ -77,12 +78,10 @@ npm install
 
 3. 使用微信开发者工具打开项目
 
-4. 修改 `pages/design/design.js` 中的 API 地址为本地 SD WebUI 地址
-
 ## 注意事项
 
 1. 在线设计功能需要本地运行 Stable Diffusion WebUI
-2. 真机调试时需要修改 API 地址为电脑的局域网 IP
+2. 真机调试时需要将 `design.js` 中的 API 地址修改为电脑的局域网 IP
 3. 小程序发布时需要配置合法域名
 
 ## 贡献指南

@@ -4,23 +4,11 @@
 
 ## 项目截图
 
-### 首页
-![首页分类](screenshots/home.jpg)
-
-### 商品列表
-![商品列表](screenshots/category.jpg)
-
-### 购物车
-![购物车](screenshots/cart.jpg)
-
-### 个人中心
-![个人中心](screenshots/profile.jpg)
-
-### AI客服
-![AI客服](screenshots/ai-service.jpg)
-
-### 在线设计
-![在线设计](screenshots/design.jpg)
+|首页|商品列表|购物车|
+|---|---|---|
+|![首页](screenshots/home.jpg)|![商品列表](screenshots/category.jpg)|![购物车](screenshots/cart.jpg)|
+|**个人中心**|**AI客服**|**在线设计**|
+|![个人中心](screenshots/profile.jpg)|![AI客服](screenshots/ai-service.jpg)|![在线设计](screenshots/design.jpg)|
 
 ## 主要功能
 

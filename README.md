@@ -2,6 +2,26 @@
 
 基于微信小程序开发的云南特色服装设计平台，集成了 AI 设计、在线商城等功能。
 
+## 项目截图
+
+### 首页
+![首页分类](screenshots/home.jpg)
+
+### 商品列表
+![商品列表](screenshots/category.jpg)
+
+### 购物车
+![购物车](screenshots/cart.jpg)
+
+### 个人中心
+![个人中心](screenshots/profile.jpg)
+
+### AI客服
+![AI客服](screenshots/ai-service.jpg)
+
+### 在线设计
+![在线设计](screenshots/design.jpg)
+
 ## 主要功能
 
 - 🎨 AI 智能设计

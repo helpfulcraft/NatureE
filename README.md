@@ -27,7 +27,7 @@
 - 🎨 AI 智能设计
   - 支持多种云南民族服装风格
   - 自定义颜色和设计元素
-  - 本地 Stable Diffusion 模型支持
+  - 集成 Stable Diffusion 模型
 
 - 🛍️ 商城功能
   - 商品浏览和搜索
@@ -59,9 +59,8 @@ npm install
 - 开启增强编译
 
 3. Stable Diffusion 配置
-- 启动参数需要加入 `--api` 和 `--listen`
+- 使用秋叶整合包，已默认启用 API 功能
 - 默认端口 7860
-- API 已配置为本地地址 `http://127.0.0.1:7860`
 
 ## 本地开发
 
@@ -80,7 +79,7 @@ npm install
 
 ## 注意事项
 
-1. 在线设计功能需要本地运行 Stable Diffusion WebUI
+1. 在线设计功能需要本地运行 Stable Diffusion WebUI（使用秋叶整合包启动即可）
 2. 真机调试时需要将 `design.js` 中的 API 地址修改为电脑的局域网 IP
 3. 小程序发布时需要配置合法域名
 

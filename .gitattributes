@@ -1,1 +1,20 @@
- 
+*.wxml linguist-language=XML
+*.wxss linguist-language=CSS
+*.wxs linguist-language=JavaScript
+*.json linguist-language=JSON
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.ttf binary
+*.eot binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
+*.gz binary
+*.zip binary
+*.7z binary
